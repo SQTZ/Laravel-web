@@ -1,10 +1,5 @@
-<form action="">
-    <div class="flex">
-    <div>
-        <input class="h-7" type="text" name="q" id="search" placeholder="9986">
-    </div>
-    <div>
-    <button class="bg-red-500 h-7 px-2 text-white" type="submit">{{ __('Rechercher') }}</button>
-    </div>
-    </div>
+<form action="/search" method="get">
+    @csrf {{-- Inclure le jeton CSRF pour protéger le formulaire --}}
+    <input type="text" name="search" placeholder="Rechercher..." value="{{ $search_text ?? '' }}" class="h-6">
+    <button type="submit" class="px-2 bg-red-500 text-white">Rechercher</button>
 </form>

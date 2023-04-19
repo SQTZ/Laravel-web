@@ -1,14 +1,13 @@
 <x-app-layout>
-    <title>{{ $article->Code_article }}</title>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+            <div class="flex">
+            <p><a class="text-white" href="../dashboard">Retour</a></p>
+            </div>
 
 
         <!--Barre de navigation-->
-        @include('partials.search');
+        @include('partials.search')
 
 
 
@@ -20,7 +19,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <p>{{ $article->Version }}</p>
+                <h1>Code article n°{{ $article->Code_article }}</h1>
+                <br>
+                <h2>Version(s) disponible(s):</h2>
+                <p>v{{ $article->Version }}</p>
                 </div>
             </div>
         </div>

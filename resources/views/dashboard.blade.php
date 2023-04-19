@@ -7,7 +7,7 @@
 
 
         <!--Barre de navigation-->
-        @include('partials.search');
+        @include('partials.search')
 
 
 
@@ -20,12 +20,42 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 <h1>Liste des produits</h1>
-                
-                @foreach($articles as $article)
-                <a href="{{ url("show/{$article->Code_article}")}}">{{ $article->Code_article }}</a>
-                {{ $article->Version }}
-                {{ $article->Date }}
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Code_article</th>
+                            <th scope="col">MAT</th>
+                            <th scope="col">EMB</th>
+                            <th scope="col">MOD</th>
+                            <th scope="col">FF</th>
+                            <th scope="col">MC</th>
+                            <th scope="col">PV</th>
+                            <th scope="col">Version</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($articles as $article)
+                        <tr>
+                            <th scope="row">{{ $article->Code_article }}</th>
+                            <th scope="row">{{ $article->MAT }}</th>
+                            <th scope="row">{{ $article->EMB }}</th>
+                            <th scope="row">{{ $article->MOD }}</th>
+                            <th scope="row">{{ $article->FF }}</th>
+                            <th scope="row">{{ $article->MC }}</th>
+                            <th scope="row">{{ $article->PV }}</th>
+                            <th scope="row">{{ $article->Version }}</th>
+                            <th scope="row">{{ $article->Date }}</th>
+
+                            <th scope="row"><a href="{{ url("show/{$article->Code_article}")}}">Visualiser</a></th>
+                            <th scope="row">Modifier</th>
+                            <th scope="row">Supprimer</th>
+                        </tr>
+
                 @endforeach
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>

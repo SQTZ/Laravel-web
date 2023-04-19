@@ -23,18 +23,29 @@ Route::get('/', function () {
 
 // Route -- Dashboard --
 Route::group([], function () {
+
+    // Route -- Dashboard -- Listes des articles
     Route::get('/dashboard', function () {
-        //Je récupère les données de la table g_dashboard
         $articles_list = new \App\Models\G_dashboard();
         $articles = $articles_list->get();
-        //Et je l'affiche dans ma vue
         return view('dashboard', compact('articles'));
     })->middleware(['auth', 'verified'])->name('dashboard');
 
+    // Route -- Dashboard -- Afficher un article
     Route::get('show/{Code_article}', function ($Code_article) {
         $article = \App\Models\G_dashboard::where('Code_article', $Code_article)->first();
         return view('show', compact('article'));
     });
+
+    // Route -- Dashboard -- Rechercher un article
+    Route::get('search', function (\Illuminate\Http\Request $request) {
+        $search_text = $request->input('search');
+        $articles = \App\Models\G_dashboard::where('Code_article', 'LIKE', '%' . $search_text . '%')
+        ->orwhere('Version', 'LIKE', '%' . $search_text . '%')
+        ->orwhere('Date', 'LIKE', '%' . $search_text . '%')->get();
+        return view('dashboard', compact('articles', 'search_text'));
+    });
+
 });
 
 
