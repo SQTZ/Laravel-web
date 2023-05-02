@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CreateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,11 @@ Route::group([], function () {
     });
 
 });
+
+
+// Route -- Dashboard -- Créer un article
+Route::get('editor', [CreateController::class, 'index'])->name('editor');
+Route::get('/fetch-data', [CreateController::class, 'fetchData']);
 
 
 //Route -- Authentification --

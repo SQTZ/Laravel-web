@@ -11,7 +11,8 @@
 
 
 
-        <a class="bg-red-500 px-3 py-1 rounded-lg text-white" href="#">Créer</a>
+
+        <a class="bg-red-500 px-3 py-1 rounded-lg text-white" href="editor">Créer</a>
         </div>
     </x-slot>
 
@@ -20,42 +21,47 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 <h1>Liste des produits</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Code_article</th>
-                            <th scope="col">MAT</th>
-                            <th scope="col">EMB</th>
-                            <th scope="col">MOD</th>
-                            <th scope="col">FF</th>
-                            <th scope="col">MC</th>
-                            <th scope="col">PV</th>
-                            <th scope="col">Version</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($articles as $article)
-                        <tr>
-                            <th scope="row">{{ $article->Code_article }}</th>
-                            <th scope="row">{{ $article->MAT }}</th>
-                            <th scope="row">{{ $article->EMB }}</th>
-                            <th scope="row">{{ $article->MOD }}</th>
-                            <th scope="row">{{ $article->FF }}</th>
-                            <th scope="row">{{ $article->MC }}</th>
-                            <th scope="row">{{ $article->PV }}</th>
-                            <th scope="row">{{ $article->Version }}</th>
-                            <th scope="row">{{ $article->Date }}</th>
+                <table class="table-auto w-full">
+  <thead>
+    <tr>
+      <th class="border px-4 py-2" scope="col">Code_article</th>
+      <th class="border px-4 py-2" scope="col">MAT</th>
+      <th class="border px-4 py-2" scope="col">EMB</th>
+      <th class="border px-4 py-2" scope="col">MOD</th>
+      <th class="border px-4 py-2" scope="col">FF</th>
+      <th class="border px-4 py-2" scope="col">MC</th>
+      <th class="border px-4 py-2" scope="col">PV</th>
+      <th class="border px-4 py-2" scope="col">Version</th>
+      <th class="border px-4 py-2" scope="col">Date</th>
+      <th class="border px-4 py-2" scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($articles as $article)
+    <tr>
+      <td class="border px-4 py-2">{{ $article->Code_article }}</td>
+      <td class="border px-4 py-2">{{ $article->MAT }}</td>
+      <td class="border px-4 py-2">{{ $article->EMB }}</td>
+      <td class="border px-4 py-2">{{ $article->MOD }}</td>
+      <td class="border px-4 py-2">{{ $article->FF }}</td>
+      <td class="border px-4 py-2">{{ $article->MC }}</td>
+      <td class="border px-4 py-2">{{ $article->PV }}</td>
+      <td class="border px-4 py-2">{{ $article->Version }}</td>
+      <td class="border px-4 py-2">{{ $article->Date }}</td>
+      <td class="border px-4 py-2">
+        <a href="{{ url("show/{$article->Code_article}") }}">Visualiser</a>
+        <a href="{{ url("edit/{$article->Code_article}") }}">Modifier</a>
+        <form action="{{ url("delete/{$article->Code_article}") }}" method="POST">
+          @csrf
+          <button type="submit">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
 
-                            <th scope="row"><a href="{{ url("show/{$article->Code_article}")}}">Visualiser</a></th>
-                            <th scope="row">Modifier</th>
-                            <th scope="row">Supprimer</th>
-                        </tr>
 
-                @endforeach
-                    </tbody>
-                </table>
                 </div>
             </div>
         </div>
