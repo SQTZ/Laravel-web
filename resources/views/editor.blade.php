@@ -89,25 +89,18 @@
 </style>
 
 
-
 <script>
-                let formRows = document.querySelectorAll('.formRow');
-let formRowCount = formRows.length;
-let btnSupprimerLigne = document.getElementById('btnSupprimerLigne');
+function removeRow(btn) {
+  let formRow = btn.closest('.formRow');
+  let formRowCount = document.querySelectorAll('.formRow').length;
 
-if (formRowCount > 1) {
-    // Afficher le bouton "Supprimer"
-    btnSupprimerLigne.style.display = 'block';
-} else {
-    // Masquer le bouton "Supprimer"
-    btnSupprimerLigne.style.display = 'none';
+  if (formRowCount > 1) {
+    formRow.remove();
+  } else {
+    alert('Vous ne pouvez pas supprimer toutes les lignes !');
+  }
 }
 
-            </script>
-
-
-
-<script>
 //Script permettant de récupérer les données situés dans la table g_produits
 
 function addNewForm() {
@@ -125,11 +118,6 @@ function addNewForm() {
 
     formContainer.appendChild(newRow);
     attachEventListeners(newRow);
-}
-
-function removeRow(button) {
-    let formRow = button.closest('.formRow');
-    formRow.remove();
 }
 
 
@@ -169,12 +157,6 @@ document.querySelectorAll('.formRow').forEach(formRow => {
 document.getElementById('btnAjouterLigne').addEventListener('click', function() {
     addNewForm();
 });
-
-
-
-
-
-
 
 </script>
 
