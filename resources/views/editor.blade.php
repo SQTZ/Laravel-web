@@ -36,7 +36,6 @@
         <h2 class="text-xl mb-2 text-white">Catégorie MAT</h2>
 <div class="flex gap-4">
 <button type="button" id="btnAjouterLigne" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter</button>
-<button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
 </div>
         </div>
 
@@ -75,6 +74,7 @@
                 <label for="freinteGlobale" class="text-white">Freinte globale</label>
                 <input type="number" id="freinteGlobale" class="">
             </div>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow(this)">Supprimer</button>
         </div>
 
     </form>
@@ -91,9 +91,26 @@
 
 
 <script>
-//Script permettant d'ajouter ou supprimer une ligne de formulaire
+                let formRows = document.querySelectorAll('.formRow');
+let formRowCount = formRows.length;
+let btnSupprimerLigne = document.getElementById('btnSupprimerLigne');
 
-document.getElementById('btnAjouterLigne').addEventListener('click', function() {
+if (formRowCount > 1) {
+    // Afficher le bouton "Supprimer"
+    btnSupprimerLigne.style.display = 'block';
+} else {
+    // Masquer le bouton "Supprimer"
+    btnSupprimerLigne.style.display = 'none';
+}
+
+            </script>
+
+
+
+<script>
+//Script permettant de récupérer les données situés dans la table g_produits
+
+function addNewForm() {
     let formContainer = document.getElementById('formContainer');
     let lastRow = formContainer.querySelector('.formRow:last-child');
     let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
@@ -106,34 +123,19 @@ document.getElementById('btnAjouterLigne').addEventListener('click', function() 
         input.value = ""; // Efface la valeur de l'élément input
     });
 
-    
-
     formContainer.appendChild(newRow);
-});
+    attachEventListeners(newRow);
+}
 
-// Supprime n'importe quelle ligne
-document.getElementById('btnSupprimerLigne').addEventListener('click', function() {
-    let formContainer = document.getElementById('formContainer');
-    let lastRow = formContainer.querySelector('.formRow:last-child');
-    let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
-    let newRowId = lastRowId - 1;
-
-    if (lastRowId > 1) {
-        formContainer.removeChild(lastRow);
-    }
-});
+function removeRow(button) {
+    let formRow = button.closest('.formRow');
+    formRow.remove();
+}
 
 
-</script>
-
-
-
-<script>
-//Script permettant de récupérer les données situés dans la table g_produits
-
-    function fetchDataForCodeArticle(input) {
-    input.addEventListener('change', function () {
-        let codeArticle = input.value;
+function attachEventListeners(formRow) {
+    formRow.querySelector('#codeArticle').addEventListener('change', function () {
+        let codeArticle = this.value;
         
         fetch(`/fetch-data?Reference=${codeArticle}`, {
             headers: {
@@ -146,7 +148,6 @@ document.getElementById('btnSupprimerLigne').addEventListener('click', function(
                 if (data.error) {
                     alert(data.error);
                 } else {
-                    let formRow = input.closest('.formRow');
                     formRow.querySelector('#designation').value = data.Designation;
                     formRow.querySelector('#prixKg').value = data.Prix_article_kg;
                     formRow.querySelector('#poidsMat').value = data.Poids_MAT;
@@ -159,8 +160,21 @@ document.getElementById('btnSupprimerLigne').addEventListener('click', function(
     });
 }
 
-// Ajoutez l'événement 'change' à tous les éléments d'entrée du code article
-document.querySelectorAll('#codeArticle').forEach(fetchDataForCodeArticle);
+// Attachez les écouteurs d'événements à tous les formulaires existants
+document.querySelectorAll('.formRow').forEach(formRow => {
+    attachEventListeners(formRow);
+});
+
+// Ajoutez un nouveau formulaire lorsque le bouton est cliqué
+document.getElementById('btnAjouterLigne').addEventListener('click', function() {
+    addNewForm();
+});
+
+
+
+
+
+
 
 </script>
 
