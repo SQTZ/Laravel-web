@@ -55,6 +55,7 @@ Route::get('editor', [CreateController::class, 'index'])->name('editor');
 Route::get('/fetch-data', [CreateController::class, 'fetchData']);
 
 
+
 //Route -- Authentification --
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

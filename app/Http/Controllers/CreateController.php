@@ -23,5 +23,6 @@ class CreateController extends Controller
             return response()->json(['error' => 'Aucune donnée trouvée pour ce code article.']);
         }
     }
+    
 
 }
