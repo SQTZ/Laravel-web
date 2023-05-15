@@ -33,6 +33,7 @@
         
         @include('layouts.mat')
         @include('layouts.emb')
+        @include('layouts.moo')
 
 
 </x-app-layout>
