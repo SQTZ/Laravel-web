@@ -30,7 +30,7 @@
 
         </table>
 
-        
+        <!--J'inclus mes layouts MAT, EMB, MOO et FF pour activer le mode calcul-->
         @include('layouts.mat')
         @include('layouts.emb')
         @include('layouts.moo')
@@ -38,32 +38,6 @@
 
 
         <script>
-            function updateValuesTOTAL() {
-    var result1 = CalcRelease1();
-    var result2 = CalcRelease2();
-    var result3 = CalcRelease3();
-
-    if (result1 > 0) {
-        console.log("j'ai quelque chose dans result1");
-    } else {
-        console.log("j'ai rien dans result1");
-    }
-
-    if (result2 > 0) {
-        console.log("j'ai quelque chose dans result2");
-    } else {
-        console.log("j'ai rien dans result2");
-    }
-
-    if (result3 > 0) {
-        console.log("j'ai quelque chose dans result3");
-    } else {
-        console.log("j'ai rien dans result3");
-    }
-
-    CalculTotal();  // Appeler CalculTotal() après avoir appelé CalcRelease*()
-}
-
 
             //Fait le calcul
             function CalculTotal() {
