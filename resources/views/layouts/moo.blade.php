@@ -92,6 +92,7 @@ document.getElementById('btnAjouterLigneMOO').addEventListener('click', function
         // Je crée ma formule et je l'affiche dans l'input result
         result = (NbEtp / CadenceHoraire);
         document.getElementById("resultMOO").value = result;
+        CalculTotal();  // Ajout de cette ligne
 
         return result;
     }

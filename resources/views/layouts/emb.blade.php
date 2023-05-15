@@ -149,7 +149,8 @@ document.getElementById('btnAjouterLigneEMB').addEventListener('click', function
         // Je crée ma formule et je l'affiche dans l'input result
         result = (prixKg * quantite) + (freinte * poidsMAT) + (coutMatiere * freinteGlobale);
         document.getElementById("resultEMB").value = result;
-
+        CalculTotal();  // Ajout de cette ligne
+        
         return result;
     }
 
