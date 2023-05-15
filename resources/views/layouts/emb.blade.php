@@ -1,9 +1,9 @@
 <!--Module pour la catégorie EMB-->
 
 <div class="mb-4">
-    <div class="flex gap-8 mb-10 mt-10 items-center ml-4">
-        <h2 class="text-xl mb-2 text-white">Catégorie EMB</h2>
-            <button type="button" id="btnAjouterLigneEMB" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
+    <div class="flex gap-8 mb-4 mt-24 items-center ml-4">
+        <h2 class="text-xl text-white">Catégorie EMB</h2>
+            <button type="button" id="btnAjouterLigneEMB" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
     </div>
 
     <div id="formContainerEMB">

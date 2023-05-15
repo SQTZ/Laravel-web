@@ -1,9 +1,9 @@
 <!--Module pour la catégorie MAT-->
 
 <div class="mb-4">
-    <div class="flex gap-8 items-center mb-10 ml-4">
-    <h2 class="text-xl mb-2 text-white">Catégorie MAT</h2>
-            <button type="button" id="btnAjouterLigneMAT" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
+    <div class="flex gap-8 items-center mb-4 ml-4">
+    <h2 class="text-xl text-white">Catégorie MAT</h2>
+            <button type="button" id="btnAjouterLigneMAT" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
     </div>
 
     <div id="formContainerMAT">
