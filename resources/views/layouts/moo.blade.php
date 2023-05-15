@@ -27,7 +27,7 @@
     <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow3(this)">Supprimer</button>
 </form>
 </div>
-<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="CalcRelease3()">Calculer MAT</button>
+<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="updateValues3()">Calculer MAT</button>
 
 <style>
     form input {
@@ -82,6 +82,8 @@ document.getElementById('btnAjouterLigneMOO').addEventListener('click', function
 
 <!--FIXME: CODE FONCTIONNELLE, A PATCHER AVEC LE FORMULAIRE PRECEDENT-->
 <script>
+    var globalResultMOO = 0;
+
     function CalcRelease3() {
         var Metier = parseInt(document.getElementById("Metier").value);
         var NbEtp = parseInt(document.getElementById("NbEtp").value);
@@ -90,7 +92,21 @@ document.getElementById('btnAjouterLigneMOO').addEventListener('click', function
         // Je crée ma formule et je l'affiche dans l'input result
         result = (NbEtp / CadenceHoraire);
         document.getElementById("resultMOO").value = result;
+
+        return result;
     }
+
+    function updateValues3() {
+    var result = CalcRelease3();
+
+    if (result > 0) {
+        console.log("j'ai quelque chose MOO");
+    } else {
+        console.log("j'ai rien MOO");
+    }
+
+    // ... le reste de votre code ...
+}
 </script>
 
 

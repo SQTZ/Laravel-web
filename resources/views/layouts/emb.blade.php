@@ -52,7 +52,7 @@
     <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow2(this)">Supprimer</button>
 </form>
 </div>
-<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="CalcRelease()">Calculer EMB</button>
+<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="updateValues2()">Calculer EMB</button>
 
 <style>
     form input {
@@ -136,6 +136,8 @@ document.getElementById('btnAjouterLigneEMB').addEventListener('click', function
 
 <!--FIXME: CODE FONCTIONNELLE, A PATCHER AVEC LE FORMULAIRE PRECEDENT-->
 <script>
+    var globalResultEMB = 0;
+
     function CalcRelease() {
         var prixKg = parseInt(document.getElementById("prixKg1").value);
         var quantite = parseInt(document.getElementById("quantite1").value);
@@ -147,7 +149,21 @@ document.getElementById('btnAjouterLigneEMB').addEventListener('click', function
         // Je crée ma formule et je l'affiche dans l'input result
         result = (prixKg * quantite) + (freinte * poidsMAT) + (coutMatiere * freinteGlobale);
         document.getElementById("resultEMB").value = result;
+
+        return result;
     }
+
+    function updateValues2() {
+    var result = CalcRelease();
+
+    if (result > 0) {
+        console.log("j'ai quelque chose EMB");
+    } else {
+        console.log("j'ai rien EMB");
+    }
+
+    // ... le reste de votre code ...
+}
 </script>
 
 

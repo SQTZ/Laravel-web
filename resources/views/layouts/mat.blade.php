@@ -52,7 +52,7 @@
     <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow1(this)">Supprimer</button>
 </form>
 </div>
-<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="CalcRelease2()">Calculer MAT</button>
+<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="updateValues1()">Calculer MAT</button>
 
 <style>
     form input {
@@ -136,6 +136,8 @@ document.getElementById('btnAjouterLigneMAT').addEventListener('click', function
 
 <!--FIXME: CODE FONCTIONNELLE, A PATCHER AVEC LE FORMULAIRE PRECEDENT-->
 <script>
+    var globalResultMAT = 0;
+
     function CalcRelease2() {
         var prixKg = parseInt(document.getElementById("prixKg2").value);
         var quantite = parseInt(document.getElementById("quantite2").value);
@@ -147,7 +149,22 @@ document.getElementById('btnAjouterLigneMAT').addEventListener('click', function
         // Je crée ma formule et je l'affiche dans l'input result
         result = (prixKg * quantite) + (freinte * poidsMAT) + (coutMatiere * freinteGlobale);
         document.getElementById("resultMAT").value = result;
+
+        // Renvoyer le résultat
+    return result;
     }
+
+    function updateValues1() {
+    var result = CalcRelease2();
+
+    if (result > 0) {
+        console.log("j'ai quelque chose MAT");
+    } else {
+        console.log("j'ai rien MAT");
+    }
+
+    // ... le reste de votre code ...
+}
 </script>
 
 
