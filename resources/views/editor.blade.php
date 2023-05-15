@@ -3,7 +3,7 @@
 <body>
 
 </body>
-<table id="resultTable" class=" w-96 text-left border-collapse">
+<table id="resultTable" class="m-auto">
             <thead>
                 <tr>
                     <th class="border border-gray-300 p-2 text-white">MAT</th>
@@ -17,13 +17,13 @@
             </thead>
             <tbody>
     <tr id="resultTD">
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultMAT" oninput="CalculTotal()" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultEMB" oninput="CalculTotal()" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultMOO" oninput="CalculTotal()" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultFF" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultTOTAL" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultMC"></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="" id="resultPV" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMAT" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultEMB" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOO" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultFF" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC"></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" readonly></td>
     </tr>
 </tbody>
 

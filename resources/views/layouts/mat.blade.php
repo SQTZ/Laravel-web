@@ -1,52 +1,50 @@
 <!--Module pour la catégorie MAT-->
 
 <div class="mb-4">
-    <div class="flex justify-between items-center">
-        <h2 class="text-xl mb-2 text-white">Catégorie MAT</h2>
-        <div class="flex gap-4">
-            <button type="button" id="btnAjouterLigneMAT" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter</button>
-        </div>
+    <div class="flex gap-8 items-center mb-10 ml-4">
+    <h2 class="text-xl mb-2 text-white">Catégorie MAT</h2>
+            <button type="button" id="btnAjouterLigneMAT" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
     </div>
 
     <div id="formContainerMAT">
-        <form id="calcul-form" class="justify-around formRowMAT flex" data-rowid="1">
+        <form id="calcul-form" class="ml-4 gap-4 formRowMAT flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
-                <input type="text" id="codeArticle" class="w-56">
+                <input type="text" id="codeArticle" class="w-24 h-8">
             </div>
             <div class="flex flex-col">
                 <label for="designation" class="text-white">Désignation</label>
-                <input type="text" id="designation" readonly/>
+                <input type="text" id="designation" class="h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgMAT" readonly/>
+                <input type="text" id="prixKgMAT" class="w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteMAT"/>
+                <input type="text" id="quantiteMAT" class="w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteMAT"/>
+                <input type="text" id="freinteMAT" class="w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
-                <input type="text" id="poidsMatMAT" readonly/>
+                <input type="text" id="poidsMatMAT" class="w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereMAT" readonly/>
+                <input type="text" id="coutMatiereMAT" class="w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinteGlobale" class="text-white">Freinte globale</label>
-                <input type="text" id="freinteGlobaleMAT"/>
+                <input type="text" id="freinteGlobaleMAT" class="h-8"/>
             </div>
 
-            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRowMAT(this)">Supprimer</button>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)">Supprimer</button>
         </form>
     </div>
-    <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="updateValuesMAT()">Calculer MAT</button>
+    <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="updateValuesMAT()">Calculer MAT</button>
 
     <style>
         form input {
