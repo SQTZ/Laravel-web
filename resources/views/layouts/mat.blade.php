@@ -1,57 +1,58 @@
+<!--Module pour la catégorie MAT-->
+
 <div class="mb-4">
     
         <div class="flex justify-between items-center">
         <h2 class="text-xl mb-2 text-white">Catégorie MAT</h2>
 <div class="flex gap-4">
-<button type="button" id="btnAjouterLigne" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter</button>
+<button type="button" id="btnAjouterLigneMAT" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter</button>
 </div>
         </div>
 
-    <div id="formContainer">
-    <form id="matForm" class="formRow" data-rowid="1">
-        <div class="flex gap-4 justify-center" data-rowid="1">
-            <div class="flex flex-col">
+        <div id="formContainer1">
+<form id="calcul-form" class="justify-around formRow1 flex" data-rowid="1">
+<div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
                 <input type="text" id="codeArticle" class="w-56">
             </div>
             <div class="flex flex-col">
                 <label for="designation" class="text-white">Désignation</label>
-                <input type="text" id="designation" class="" readonly>
+                <input type="text" id="designation" readonly>
             </div>
-            <div class="flex flex-col">
-                <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="number" id="prixKg" class="" readonly>
-            </div>
-            <div class="flex flex-col">
-                <label for="quantite" class="text-white">Quantité</label>
-                <input type="number" id="quantite" class="">
-            </div>
-            <div class="flex flex-col">
-                <label for="freinte" class="text-white">Freinte</label>
-                <input type="number" id="freinte" class="">
-            </div>
-            <div class="flex flex-col">
-                <label for="poidsMat" class="text-white">Poids MAT</label>
-                <input type="number" id="poidsMat" class="" readonly>
-            </div>
-            <div class="flex flex-col">
-                <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="number" id="coutMatiere" class="" readonly>
-            </div>
-            <div class="flex flex-col">
-                <label for="freinteGlobale" class="text-white">Freinte globale</label>
-                <input type="number" id="freinteGlobale" class="">
-            </div>
-            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow(this)">Supprimer</button>
-
-        </div>
-    </form>
-    </div>
-    <button type="button" id="btnCalculerMat" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Calculer MAT</button>
-
-
-    
+<div class="flex flex-col">
+    <label for="prixKg" class="text-white">Prix /kg</label>
+    <input type="text" id="prixKg2" readonly/>
 </div>
+
+    <div class="flex flex-col">
+        <label for="quantite" class="text-white">Quantité</label>
+    <input type="text" id="quantite2" />
+    </div>
+
+    <div class="flex flex-col">
+    <label for="freinte" class="text-white">Freinte</label>
+    <input type="text" id="freinte2" />
+    </div>
+
+    <div class="flex flex-col">
+    <label for="poidsMat" class="text-white">Poids MAT</label>
+    <input type="text" id="poidsMat2" readonly/>
+    </div>
+
+    <div class="flex flex-col">
+    <label for="coutMatiere" class="text-white">Coût matière</label>
+    <input type="text" id="coutMatiere2" readonly/>
+    </div>
+
+    <div class="flex flex-col">
+    <label for="freinteGlobale" class="text-white">Freinte globale</label>
+    <input type="text" id="freinteGlobale2" />
+    </div>
+    
+    <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow1(this)">Supprimer</button>
+</form>
+</div>
+<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="CalcRelease2()">Calculer MAT</button>
 
 <style>
     form input {
@@ -61,9 +62,9 @@
 
 
 <script>
-function removeRow(btn) {
-  let formRow = btn.closest('.formRow');
-  let formRowCount = document.querySelectorAll('.formRow').length;
+function removeRow1(btn) {
+  let formRow = btn.closest('.formRow1');
+  let formRowCount = document.querySelectorAll('.formRow1').length;
 
   if (formRowCount > 1) {
     formRow.remove();
@@ -74,9 +75,9 @@ function removeRow(btn) {
 
 //Script permettant de récupérer les données situés dans la table g_produits
 
-function addNewForm() {
-    let formContainer = document.getElementById('formContainer');
-    let lastRow = formContainer.querySelector('.formRow:last-child');
+function addNewForm1() {
+    let formContainer = document.getElementById('formContainer1');
+    let lastRow = formContainer.querySelector('.formRow1:last-child');
     let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
     let newRowId = lastRowId + 1;
 
@@ -108,25 +109,53 @@ function attachEventListeners(formRow) {
                     alert(data.error);
                 } else {
                     formRow.querySelector('#designation').value = data.Designation;
-                    formRow.querySelector('#prixKg').value = data.Prix_article_kg;
-                    formRow.querySelector('#poidsMat').value = data.Poids_MAT;
-                    formRow.querySelector('#coutMatiere').value = data.Cout_Matiere;
+                    formRow.querySelector('#prixKg2').value = data.Prix_article_kg;
+                    formRow.querySelector('#poidsMat2').value = data.Poids_MAT;
+                    formRow.querySelector('#coutMatiere2').value = data.Cout_Matiere;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+
     });
 }
 
 // Attachez les écouteurs d'événements à tous les formulaires existants
-document.querySelectorAll('.formRow').forEach(formRow => {
+document.querySelectorAll('.formRow1').forEach(formRow => {
     attachEventListeners(formRow);
 });
 
 // Ajoutez un nouveau formulaire lorsque le bouton est cliqué
-document.getElementById('btnAjouterLigne').addEventListener('click', function() {
-    addNewForm();
+document.getElementById('btnAjouterLigneMAT').addEventListener('click', function() {
+    addNewForm1();
 });
 
 </script>
+
+
+<!--FIXME: CODE FONCTIONNELLE, A PATCHER AVEC LE FORMULAIRE PRECEDENT-->
+<script>
+    function CalcRelease2() {
+        var prixKg = parseInt(document.getElementById("prixKg2").value);
+        var quantite = parseInt(document.getElementById("quantite2").value);
+        var freinte = parseInt(document.getElementById("freinte2").value);
+        var poidsMAT = parseInt(document.getElementById("poidsMat2").value);
+        var coutMatiere = parseInt(document.getElementById("coutMatiere2").value);
+        var freinteGlobale = parseInt(document.getElementById("freinteGlobale2").value);
+
+        // Je crée ma formule et je l'affiche dans l'input result
+        result = (prixKg * quantite) + (freinte * poidsMAT) + (coutMatiere * freinteGlobale);
+        document.getElementById("resultMAT").value = result;
+    }
+</script>
+
+
+
+
+
+
+
+
+
+

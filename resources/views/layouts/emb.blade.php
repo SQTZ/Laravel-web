@@ -10,7 +10,7 @@
         </div>
 
         <div id="formContainer2">
-<form id="calcul-form" class="formRow2 flex" data-rowid="1">
+<form id="calcul-form" class="justify-around formRow2 flex" data-rowid="1">
 <div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
                 <input type="text" id="codeArticle" class="w-56">

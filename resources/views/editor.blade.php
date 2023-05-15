@@ -36,3 +36,10 @@
 
 
 </x-app-layout>
+
+<script>
+//  Je crée une fonction qui, dès que la valeur passe à 1 pour MAT; EMB; MOO; FF; on va calculer le résultat
+//  qui sera inscrit dans TOTAL, puis on écrit la valeur souhaité dans MC puis enfin calculer TOTAL et MC pour obtenir PV.
+
+
+</script>
