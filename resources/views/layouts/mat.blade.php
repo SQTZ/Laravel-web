@@ -63,72 +63,78 @@
 
 <script>
 function removeRow1(btn) {
-  let formRow = btn.closest('.formRow1');
-  let formRowCount = document.querySelectorAll('.formRow1').length;
+        let formRow = btn.closest('.formRow1');
+        let formRowCount = document.querySelectorAll('.formRow1').length;
+      
+        if (formRowCount > 1) {
+          formRow.remove();
+        } else {
+          alert('Vous ne pouvez pas supprimer toutes les lignes !');
+        }
+    }
 
-  if (formRowCount > 1) {
-    formRow.remove();
-  } else {
-    alert('Vous ne pouvez pas supprimer toutes les lignes !');
-  }
-}
-
-//Script permettant de récupérer les données situés dans la table g_produits
-
-function addNewForm1() {
-    let formContainer = document.getElementById('formContainer1');
-    let lastRow = formContainer.querySelector('.formRow1:last-child');
-    let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
-    let newRowId = lastRowId + 1;
-
-    let newRow = lastRow.cloneNode(true);
-    newRow.setAttribute('data-rowid', newRowId);
-    newRow.querySelectorAll('input').forEach(input => {
-        input.id = input.id.replace(lastRowId, newRowId);
-        input.value = ""; // Efface la valeur de l'élément input
+        // Attachez l'événement onclick aux boutons existants et futurs
+        document.querySelectorAll('.formRow1 button').forEach(button => {
+        button.addEventListener('click', function() {
+            removeRow1(this);
+        });
     });
 
-    formContainer.appendChild(newRow);
-    attachEventListeners(newRow);
-}
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Attachez les écouteurs d'événements à tous les formulaires existants
+    document.querySelectorAll('.formRow1').forEach(formRow => {
+        attachEventListeners(formRow);
+    });
 
-
-function attachEventListeners(formRow) {
-    formRow.querySelector('#codeArticle').addEventListener('change', function () {
-        let codeArticle = this.value;
-        
-        fetch(`/fetch-data?Reference=${codeArticle}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    formRow.querySelector('#designation').value = data.Designation;
-                    formRow.querySelector('#prixKg2').value = data.Prix_article_kg;
-                    formRow.querySelector('#poidsMat2').value = data.Poids_MAT;
-                    formRow.querySelector('#coutMatiere2').value = data.Cout_Matiere;
-                }
+    // Ajoutez un nouveau formulaire lorsque le bouton est cliqué
+    document.getElementById('btnAjouterLigneMAT').addEventListener('click', function() {
+        addNewForm1();
+    });
+    
+    function addNewForm1() {
+        let formContainer = document.getElementById('formContainer1');
+        let lastRow = formContainer.querySelector('.formRow1:last-child');
+        let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
+        let newRowId = lastRowId + 1;
+    
+        let newRow = lastRow.cloneNode(true);
+        newRow.setAttribute('data-rowid', newRowId);
+        newRow.querySelectorAll('input').forEach(input => {
+            input.id = input.id.replace(lastRowId, newRowId);
+            input.value = ""; // Efface la valeur de l'élément input
+        });
+    
+        formContainer.appendChild(newRow);
+        attachEventListeners(newRow);
+    }
+    
+    function attachEventListeners(formRow) {
+        formRow.querySelector('#codeArticle').addEventListener('change', function () {
+            let codeArticle = this.value;
+            
+            fetch(`/fetch-data?Reference=${codeArticle}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
-    });
-}
-
-// Attachez les écouteurs d'événements à tous les formulaires existants
-document.querySelectorAll('.formRow1').forEach(formRow => {
-    attachEventListeners(formRow);
-});
-
-// Ajoutez un nouveau formulaire lorsque le bouton est cliqué
-document.getElementById('btnAjouterLigneMAT').addEventListener('click', function() {
-    addNewForm1();
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        formRow.querySelector('#designation').value = data.Designation;
+                        formRow.querySelector('#prixKg2').value = data.Prix_article_kg;
+                        formRow.querySelector('#poidsMat2').value = data.Poids_MAT;
+                        formRow.querySelector('#coutMatiere2').value = data.Cout_Matiere;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+    
+        });
+    }
 });
 
 </script>
@@ -136,6 +142,8 @@ document.getElementById('btnAjouterLigneMAT').addEventListener('click', function
 
 <!--FIXME: CODE FONCTIONNELLE, A PATCHER AVEC LE FORMULAIRE PRECEDENT-->
 <script>
+
+    
     var globalResultMAT = 0;
 
     function CalcRelease2() {
@@ -164,8 +172,8 @@ document.getElementById('btnAjouterLigneMAT').addEventListener('click', function
         console.log("j'ai rien MAT");
     }
 
-    // ... le reste de votre code ...
 }
+
 </script>
 
 

@@ -3,7 +3,7 @@
 <div class="mb-4">
     
         <div class="flex justify-between items-center">
-        <h2 class="text-xl mb-2 text-white">Catégorie MOO</h2>
+        <h2 class="text-xl mb-2 text-white">Catégorie MOD</h2>
 <div class="flex gap-4">
 <button type="button" id="btnAjouterLigneMOO" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter</button>
 </div>
