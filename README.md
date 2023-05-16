@@ -18,6 +18,17 @@ Avant de commencez, prenez note de la documentation de [Laravel](https://laravel
 
 Une fois que vous savez ce que vous modifiez merci de prendre ces instructions:
 
-**Instalation**
-Avant de le lancer, il est **OBLIGATOIRE** d'installer les modules.
+**Installation**<br>
+Avant de le lancer, il est **OBLIGATOIRE** d'installer les modules.<br>
 ``npm install --save``
+<br><br>
+
+**Configuration**<br>
+Une fois que vos modules sont installés, verifiez vos informations de base de données dans le fichier ``.env``
+<br><br>
+
+**Lancement**<br>
+Et pour finir plus qu'a lancer le service !<br>
+```php artisan serve
+npm run dev
+```
