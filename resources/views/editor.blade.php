@@ -21,8 +21,8 @@
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultEMB" oninput="CalculTotal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOD" oninput="CalculTotal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultFF" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC"></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" oninput="CalculFinal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" onchange="CalculFinal()"></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" readonly></td>
     </tr>
 </tbody>
@@ -43,12 +43,22 @@
             function CalculTotal() {
     var resultMAT = parseInt(document.getElementById("resultMAT").value) || 0;
     var resultEMB = parseInt(document.getElementById("resultEMB").value) || 0;
-    var resultMOO = parseInt(document.getElementById("resultMOO").value) || 0;
+    var resultMOO = parseInt(document.getElementById("resultMOD").value) || 0;
 
-    // Je crée ma formule et je l'affiche dans l'input result
+    // Je crée ma formule et je l'affiche dans l'input result pt.1
     var resultTOTAL = (resultMAT + resultEMB + resultMOO);
     console.log("CalculTotal a été appelée, le total est " + resultTOTAL);  // Ajout de cette ligne
     document.getElementById("resultTOTAL").value = resultTOTAL;
+
+}
+
+function CalculFinal() {
+    var resultTOTAL = parseInt(document.getElementById("resultTOTAL").value) || 0;
+    var resultMC = parseInt(document.getElementById("resultMC").value) || 0;
+    
+    var resultPV = (resultTOTAL + resultMC);
+    console.log("Le calcul final est fait, le PV est " + resultPV);  // Ajout de cette ligne
+    document.getElementById("resultPV").value = resultPV;
 }
 
 
