@@ -128,31 +128,44 @@
 </script>
 
 <script>
-    var globalResultMAT = 0;
 
-    function CalcReleaseMAT() {
-        var prixKgMAT = document.getElementById("prixKgMAT").value;
-        var quantiteMAT = document.getElementById("quantiteMAT").value;
-        var freinteMAT = document.getElementById("freinteMAT").value;
-        var poidsMatMAT = document.getElementById("poidsMatMAT").value;
-        var coutMatiereMAT = document.getElementById("coutMatiereMAT").value;
-        var freinteGlobaleMAT = document.getElementById("freinteGlobaleMAT").value;
+function updateValuesMAT() {
+    // obtenir toutes les lignes du formulaire
+    let formRows = document.querySelectorAll('.formRowMAT');
 
-        result = (prixKgMAT * quantiteMAT) + (freinteMAT * poidsMatMAT) + (coutMatiereMAT * freinteGlobaleMAT);
-        document.getElementById('resultMAT').value = result;
-        CalculTotal();
+    // initialiser le total
+    let total = 0;
 
-        return result;
-    }
+    // parcourir toutes les lignes du formulaire
+    formRows.forEach(formRow => {
+        // calculer le résultat pour cette ligne
+        let result = CalcReleaseMAT(formRow);
 
-    function updateValuesMAT() {
-        var result = CalcReleaseMAT();
+        // ajouter le résultat au total
+        total += result;
+    });
 
-        if (result > 0) {
-            console.log("[MAT] Result:" + result);
-        } else {
-            console.log("[ERROR] Aucune donnée trouvé pour MAT");
-        }
-    }
+    // imprimer le total dans la console
+    console.log("[MAT] Total:" + total);
+
+    // afficher le total dans l'input "resultMAT"
+    document.getElementById('resultMAT').value = total;
+    CalculTotal();
+}
+
+function CalcReleaseMAT(formRow) {
+    var prixKgMAT = parseFloat(formRow.querySelector("#prixKgMAT").value);
+    var quantiteMAT = parseFloat(formRow.querySelector("#quantiteMAT").value);
+    var freinteMAT = parseFloat(formRow.querySelector("#freinteMAT").value);
+    var poidsMatMAT = parseFloat(formRow.querySelector("#poidsMatMAT").value);
+    var coutMatiereMAT = parseFloat(formRow.querySelector("#coutMatiereMAT").value);
+    var freinteGlobaleMAT = parseFloat(formRow.querySelector("#freinteGlobaleMAT").value);
+
+    let result = (prixKgMAT * quantiteMAT) + (freinteMAT * poidsMatMAT) + (coutMatiereMAT * freinteGlobaleMAT);
+
+    return result;
+}
+
+
 </script>
 </div>
