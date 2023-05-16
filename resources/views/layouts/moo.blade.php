@@ -1,121 +1,109 @@
-<!--Module pour la catégorie MOO-->
+<!--Module pour la catégorie MOD-->
 
-<div class="mb-4">
-    
-        <div class="flex justify-between items-center">
-        <h2 class="text-xl mb-2 text-white">Catégorie MOD</h2>
-<div class="flex gap-4">
-<button type="button" id="btnAjouterLigneMOO" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter</button>
-</div>
-        </div>
+<div class="pb-10">
+    <div class="flex gap-8 mb-4 mt-24 items-center ml-4">
+        <h2 class="text-xl text-white">Catégorie MOD</h2>
+            <button type="button" id="btnAjouterLigneMOD" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
+    </div>
 
-        <div id="formContainer3">
-<form id="calcul-form" class="justify-around formRow3 flex" data-rowid="1">
-<div class="flex flex-col">
+    <div id="formContainerMOD">
+        <form id="calcul-form" class="ml-4 gap-4 formRowMOD flex" data-rowid="1">
+            <div class="flex flex-col">
                 <label for="Metier" class="text-white">Métier</label>
-                <input type="text" id="Metier" class="w-56">
+                <input type="text" id="Metier" class="w-24 h-8">
             </div>
             <div class="flex flex-col">
-                <label for="NbEtp" class="text-white">Nb Etp</label>
-                <input type="text" id="NbEtp">
+                <label for="nbETP" class="text-white">Nb ETP</label>
+                <input type="text" id="nbETP" class="w-24 h-8"/>
             </div>
-<div class="flex flex-col">
-    <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
-    <input type="text" id="CadenceHoraire"/>
-</div>
-    
-    <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="removeRow3(this)">Supprimer</button>
-</form>
-</div>
-<button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="updateValues3()">Calculer MAT</button>
+            <div class="flex flex-col">
+                <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
+                <input type="text" id="CadenceHoraire" class="w-24 h-8"/>
+            </div>
 
-<style>
-    form input {
-        width: 150px;
-    }
-</style>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
+        </form>
+    </div>
+    <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="updateValuesMOD()">Calculer MOD</button>
+
+    <style>
+        form input {
+            width: 150px;
+        }
+    </style>
 
 
 <script>
-function removeRow3(btn) {
-  let formRow = btn.closest('.formRow3');
-  let formRowCount = document.querySelectorAll('.formRow3').length;
+    function removeRowMOD(btn) {
+        let formRow = btn.closest('.formRowMOD');
+        let formRowCount = document.querySelectorAll('.formRowMOD').length;
 
-  if (formRowCount > 1) {
-    formRow.remove();
-  } else {
-    alert('Vous ne pouvez pas supprimer toutes les lignes !');
-  }
-}
+        if (formRowCount > 1) {
+            formRow.remove();
+        } else {
+            alert('Vous ne pouvez pas supprimer toutes les lignes !');
+        }
+    }
 
-//Script permettant de récupérer les données situés dans la table g_produits
-
-function addNewForm3() {
-    let formContainer = document.getElementById('formContainer3');
-    let lastRow = formContainer.querySelector('.formRow3:last-child');
-    let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
-    let newRowId = lastRowId + 1;
-
-    let newRow = lastRow.cloneNode(true);
-    newRow.setAttribute('data-rowid', newRowId);
-    newRow.querySelectorAll('input').forEach(input => {
-        input.id = input.id.replace(lastRowId, newRowId);
-        input.value = ""; // Efface la valeur de l'élément input
+    document.querySelectorAll('.formRowMOD button').forEach(button => {
+        button.addEventListener('click', function() {
+            removeRowMOD(this);
+        });
     });
 
-    formContainer.appendChild(newRow);
-    attachEventListeners(newRow);
-}
+    document.addEventListener('DOMContentLoaded', (event) => {
 
-// Attachez les écouteurs d'événements à tous les formulaires existants
-document.querySelectorAll('.formRow3').forEach(formRow => {
-    attachEventListeners(formRow);
-});
+        document.querySelectorAll('.formRowMOD').forEach(formRow => {
+            attachEventListeners(formRow);
+        });
 
-// Ajoutez un nouveau formulaire lorsque le bouton est cliqué
-document.getElementById('btnAjouterLigneMOO').addEventListener('click', function() {
-    addNewForm3();
-});
+        document.getElementById('btnAjouterLigneMOD').addEventListener('click', function() {
+            addNewFormMOD();
+        });
 
+        function addNewFormMOD() {
+            let formContainer = document.getElementById('formContainerMOD');
+            let lastRow = formContainer.querySelector('.formRowMOD:last-child');
+            let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
+            let newRowId = lastRowId + 1;
+
+            let newRow = lastRow.cloneNode(true);
+            newRow.setAttribute('data-rowid', newRowId);
+            newRow.querySelectorAll('input').forEach(input => {
+                input.id = input.id.replace(lastRowId, newRowId);
+                input.value = '';
+            });
+
+            formContainer.appendChild(newRow);
+            attachEventListeners(newRow);
+        }
+
+        
+    });
 </script>
 
-
-<!--FIXME: CODE FONCTIONNELLE, A PATCHER AVEC LE FORMULAIRE PRECEDENT-->
 <script>
-    var globalResultMOO = 0;
+    var globalResultMOD = 0;
 
-    function CalcRelease3() {
-        var Metier = parseInt(document.getElementById("Metier").value);
-        var NbEtp = parseInt(document.getElementById("NbEtp").value);
-        var CadenceHoraire = parseInt(document.getElementById("CadenceHoraire").value);
+    function CalcReleaseMOD() {
+        var nbETPMOD = document.getElementById('nbETP').value;
+        var CadenceHoraireMOD = document.getElementById('CadenceHoraire').value;
 
-        // Je crée ma formule et je l'affiche dans l'input result
-        result = (NbEtp / CadenceHoraire);
-        document.getElementById("resultMOO").value = result;
-        CalculTotal();  // Ajout de cette ligne
+        result = nbETPMOD / CadenceHoraireMOD;
+        document.getElementById('resultMOD').value = result;
+        CalculTotal();
 
         return result;
     }
 
-    function updateValues3() {
-    var result = CalcRelease3();
+    function updateValuesMOD() {
+        var result = CalcReleaseMOD();
 
-    if (result > 0) {
-        console.log("j'ai quelque chose MOO");
-    } else {
-        console.log("j'ai rien MOO");
+        if (result > 0) {
+            console.log("[MOD] Result:" + result);
+        } else {
+            console.log("[ERROR] Aucune donnée trouve pour MOD");
+        }
     }
-
-    // ... le reste de votre code ...
-}
 </script>
-
-
-
-
-
-
-
-
-
-
+</div>

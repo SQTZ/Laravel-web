@@ -39,7 +39,7 @@
 
         <script>
 
-            //Fait le calcul
+            //Va calculer le MAT, EMB, MOD et FF pour obtenir le résultat dans TOTAL
             function CalculTotal() {
     var resultMAT = parseInt(document.getElementById("resultMAT").value) || 0;
     var resultEMB = parseInt(document.getElementById("resultEMB").value) || 0;
@@ -52,6 +52,7 @@
 
 }
 
+//Va calculer TOTAL et MC pour obtenir le résultat dans PV
 function CalculFinal() {
     var resultTOTAL = parseInt(document.getElementById("resultTOTAL").value) || 0;
     var resultMC = parseInt(document.getElementById("resultMC").value) || 0;
