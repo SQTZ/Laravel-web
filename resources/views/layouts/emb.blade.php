@@ -128,31 +128,41 @@
 </script>
 
 <script>
-    var globalResultEMB = 0;
-
-    function CalcReleaseEMB() {
-        var prixKgEMB = document.getElementById('prixKgEMB').value;
-        var quantiteEMB = document.getElementById('quantiteEMB').value;
-        var freinteEMB = document.getElementById('freinteEMB').value;
-        var poidsMatEMB = document.getElementById('poidsMatEMB').value;
-        var coutMatiereEMB = document.getElementById('coutMatiereEMB').value;
-        var freinteGlobaleEMB = document.getElementById('freinteGlobaleEMB').value;
-
-        result = (prixKgEMB * quantiteEMB) + (freinteEMB * poidsMatEMB) + (freinteGlobaleEMB * coutMatiereEMB);
-        document.getElementById('resultEMB').value = result;
-        CalculTotal();
-
-        return result;
-    }
-
     function updateValuesEMB() {
-        var result = CalcReleaseEMB();
+    // obtenir toutes les lignes du formulaire
+    let formRows = document.querySelectorAll('.formRowEMB');
 
-        if (result > 0) {
-            console.log("[EMB] Result: " + result);
-        } else {
-            console.log("[ERROR] Aucune donnée trouvé pour EMB");
-        }
-    }
+    // initialiser le total
+    let total = 0;
+
+    // parcourir toutes les lignes du formulaire
+    formRows.forEach(formRow => {
+        // calculer le résultat pour cette ligne
+        let result = CalcReleaseEMB(formRow);
+
+        // ajouter le résultat au total
+        total += result;
+    });
+
+    // imprimer le total dans la console
+    console.log("[EMB] Total:" + total);
+
+    // afficher le total dans l'input "resultMAT"
+    document.getElementById('resultEMB').value = total;
+    CalculTotal();
+}
+
+function CalcReleaseEMB(formRow) {
+    var prixKgEMB = parseFloat(formRow.querySelector("#prixKgEMB").value);
+    var quantiteEMB = parseFloat(formRow.querySelector("#quantiteEMB").value);
+    var freinteEMB = parseFloat(formRow.querySelector("#freinteEMB").value);
+    var poidsMatEMB = parseFloat(formRow.querySelector("#poidsMatEMB").value);
+    var coutMatiereEMB = parseFloat(formRow.querySelector("#coutMatiereEMB").value);
+    var freinteGlobaleEMB = parseFloat(formRow.querySelector("#freinteGlobaleEMB").value);
+
+    let result = (prixKgEMB * quantiteEMB) + (freinteEMB * poidsMatEMB) + (coutMatiereEMB * freinteGlobaleEMB);
+
+    return result;
+}
 </script>
 </div>
