@@ -29,6 +29,7 @@ Une fois que vos modules sont installés, verifiez vos informations de base de d
 
 **Lancement**<br>
 Et pour finir plus qu'a lancer le service !<br>
-```php artisan serve
+```php
+php artisan serve
 npm run dev
 ```
