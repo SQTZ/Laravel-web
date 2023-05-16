@@ -3,7 +3,7 @@
 <body>
 
 </body>
-<table id="resultTable" class="m-auto">
+<table id="resultTable" class="m-auto mt-5 mb-24">
             <thead>
                 <tr>
                     <th class="border border-gray-300 p-2 text-white">MAT</th>
@@ -19,7 +19,7 @@
     <tr id="resultTD">
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMAT" oninput="CalculTotal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultEMB" oninput="CalculTotal()" readonly></td>
-        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOO" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOD" oninput="CalculTotal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultFF" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC"></td>
