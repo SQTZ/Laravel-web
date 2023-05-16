@@ -2,9 +2,7 @@
 
 <p align="center">
 <a href="/"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-
 <a href="/"><img src="https://img.shields.io/github/languages/code-size/SQTZ/Laravel-web?color=blue&label=Code%20Size&logo=laravel&logoColor=blue" alt="Code Size"></a>
-
 <a href="/"><img src="https://img.shields.io/github/package-json/v/SQTZ/Laravel-web?color=red&label=Version&logo=V&logoColor=red" alt="Latest Stable Version"></a>
 
 </p>
