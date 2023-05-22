@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('Taux_horaire');
             $table->integer('Cout_ff');
+            $table->integer('Cout_bobine');
+            $table->timestamps();
         });
     }
 

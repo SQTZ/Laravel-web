@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateController;
+use App\Http\Controllers\VariableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route -- Variables --
+Route::get('variable', [VariableController::class, 'index'])->name('variable');
 
 // Route -- Dashboard --
 Route::group([], function () {
@@ -55,8 +58,10 @@ Route::get('editor', [CreateController::class, 'index'])->name('editor');
 Route::get('/fetch-data', [CreateController::class, 'fetchData']);
 
 
+// Route -- Variables -- Ajouter
+Route::post('/fetch-variable', [VariableController::class, 'deploy']);
 
-//Route -- Authentification --
+// Route -- Authentification --
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
