@@ -70,6 +70,7 @@ Route::post('/fetch-variable', [VariableController::class, 'deploy']);
 
 // Route -- Pusher --
 Route::post('/fetch-matdata', [PusherController::class, 'generateMAT']);
+Route::post('/fetch-tabledata', [PusherController::class, 'generateDASHBOARD']);
 
 
 

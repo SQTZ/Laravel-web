@@ -24,7 +24,7 @@
                 <table class="table-auto w-full">
   <thead>
     <tr>
-      <th class="border px-4 py-2" scope="col">Code_article</th>
+      <th class="border px-4 py-2" scope="col">Code_dossier</th>
       <th class="border px-4 py-2" scope="col">MAT</th>
       <th class="border px-4 py-2" scope="col">EMB</th>
       <th class="border px-4 py-2" scope="col">MOD</th>
@@ -39,7 +39,7 @@
   <tbody>
     @foreach($articles as $article)
     <tr>
-      <td class="border px-4 py-2">{{ $article->Code_article }}</td>
+      <td class="border px-4 py-2">{{ $article->Code_dossier }}</td>
       <td class="border px-4 py-2">{{ $article->MAT }}</td>
       <td class="border px-4 py-2">{{ $article->EMB }}</td>
       <td class="border px-4 py-2">{{ $article->MOD }}</td>

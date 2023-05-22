@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('g_dashboards', function (Blueprint $table) {
-            $table->integer('Code_dossier');
+            $table->text('Code_dossier');
             $table->integer('MAT');
             $table->integer('EMB');
             $table->integer('MOD');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('MC');
             $table->integer('PV');
             $table->integer('Version');
-            $table->date('Date');
+            $table->timestamps();
         });
     }
 

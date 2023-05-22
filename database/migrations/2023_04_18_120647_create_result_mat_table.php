@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('result_mats', function (Blueprint $table) {
-            $table->integer('Code_dossier');
+            $table->text('Code_dossier');
             $table->integer('Code_article');
             $table->text('Designation');
             $table->integer('Prix_kg');
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('Poids_mat');
             $table->integer('Cout_matiere');
             $table->integer('Freinte_globale');
-            $table->integer('Resultat_mat');
             $table->timestamps();
         });
     }

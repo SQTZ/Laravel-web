@@ -86,11 +86,60 @@ function GetFF() {
     });
 }
 
+</script>
 
+<script>
+    //Requête ajax pour récupérer les données de la table variables
 
+    $(document).ready(function() {
 
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('#btnPush').click(function(event) {
+    event.preventDefault();
+
+    console.log($('#resultMAT').val());
+    console.log($('#resultEMB').val());
+    console.log($('#resultMOD').val());
+    console.log($('#resultFF').val());
+    console.log($('#resultTOTAL').val());
+    console.log($('#resultMC').val());
+    console.log($('#resultPV').val());
+
+    $.ajax({
+        url: '/fetch-tabledata',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        resultMAT: $('#resultMAT').val(),
+        resultEMB: $('#resultEMB').val(),
+        resultMOD: $('#resultMOD').val(),
+        resultFF: $('#resultFF').val(),
+        resultTOTAL: $('#resultTOTAL').val(),
+        resultMC: $('#resultMC').val(),
+        resultPV: $('#resultPV').val(),
+    },
+
+        success: function(response) {
+            if (response) {
+                console.log(response);
+                alert('Données envoyées');
+
+            } else {
+                alert('Erreur');
+            }
+        }
+    });
+});
+
+});
 
 
 
 </script>
+
 </x-app-layout>

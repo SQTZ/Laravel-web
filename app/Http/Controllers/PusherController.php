@@ -24,6 +24,59 @@ class PusherController extends Controller
     }
 
 
+    public function generateDASHBOARD(Request $request)
+    {
+        list($resultMAT, $resultEMB, $resultMOD, $resultFF, $resultTOTAL, $resultMC, $resultPV) = [
+            $request->get('resultMAT'),
+            $request->get('resultEMB'),
+            $request->get('resultMOD'),
+            $request->get('resultFF'),
+            $request->get('resultTOTAL'),
+            $request->get('resultMC'),
+            $request->get('resultPV')
+        ];
+
+        if (is_null($resultMAT) || $resultMAT == '') {
+            dd('resultMAT is empty');
+        }
+        if (is_null($resultEMB) || $resultEMB == '') {
+            dd('resultEMB is empty');
+        }
+        if (is_null($resultMOD) || $resultMOD == '') {
+            dd('resultMOD is empty');
+        }
+        if (is_null($resultFF) || $resultFF == '') {
+            dd('resultFF is empty');
+        }
+        if (is_null($resultTOTAL) || $resultTOTAL == '') {
+            dd('resultTOTAL is empty');
+        }
+        if (is_null($resultMC) || $resultMC == '') {
+            dd('resultMC is empty');
+        }
+        if (is_null($resultPV) || $resultPV == '') {
+            dd('resultPV is empty');
+        }
+
+        //j'envoie les données dans la base de données
+        $data = G_dashboard::create([
+            'Code_dossier' => $this->generateDossier(),
+            'MAT' => $resultMAT,
+            'EMB' => $resultEMB,
+            'MOD' => $resultMOD,
+            'FF' => $resultFF,
+            'TOTAL' => $resultTOTAL,
+            'MC' => $resultMC,
+            'PV' => $resultPV,
+        ]);
+
+        if ($data) {
+            return response()->json($data);
+        } else {
+            return response()->json(['error' => "J'arrive pas à l'envoyer"]);
+        }
+    }
+
     public function generateMAT(Request $request)
     {
         //Je génère ma requête ajax et je le stocke ici
@@ -88,10 +141,5 @@ class PusherController extends Controller
         }
     }
 
-
-
-    public function createDossier(){
-        //J'apelle mes fonctions ici
-        
-    }
+    
 }
