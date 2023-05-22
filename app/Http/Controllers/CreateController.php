@@ -34,6 +34,16 @@ class CreateController extends Controller
             return response()->json(['error' => 'Aucune donnée trouvée.']);
         }
     }
+
+    public function fetchMOD() {
+        $data = G_variable::select('Taux_horaire')->first();
+        
+        if ($data) {
+            return response()->json($data);
+        } else {
+            return response()->json(['error' => 'Aucune donnée trouvée.']);
+        }
+    }
     
     
 

@@ -57,6 +57,7 @@ Route::group([], function () {
 Route::get('editor', [CreateController::class, 'index'])->name('editor');
 Route::get('/fetch-data', [CreateController::class, 'fetchData']);
 Route::get('/fetch-ff', [CreateController::class, 'fetchFF']);
+Route::get('/fetch-mod', [CreateController::class, 'fetchMOD']);
 
 
 

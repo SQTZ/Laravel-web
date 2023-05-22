@@ -1,4 +1,7 @@
 <!--Module pour la catégorie MOD-->
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
 <div class="pb-10">
     <div class="flex gap-8 mb-4 mt-24 items-center ml-4">
@@ -19,6 +22,11 @@
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
                 <input type="text" id="CadenceHoraire" class="w-24 h-8"/>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="CadenceHoraire" class="text-white">Taux Horaire</label>
+                <input type="text" id="TauxHoraire" class="w-24 h-8" readonly/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
@@ -88,12 +96,14 @@
     function CalcReleaseMOD() {
         var nbETPMOD = document.getElementById('nbETP').value;
         var CadenceHoraireMOD = document.getElementById('CadenceHoraire').value;
+        var TauxHoraireMOD = document.getElementById('TauxHoraire').value;
 
-        result = nbETPMOD / CadenceHoraireMOD;
-        document.getElementById('resultMOD').value = result;
+        result1 = nbETPMOD / CadenceHoraireMOD;
+        resultfinal = result1 * TauxHoraireMOD;
+        document.getElementById('resultMOD').value = resultfinal;
         CalculTotal();
 
-        return result;
+        return resultfinal;
     }
 
     function updateValuesMOD() {
@@ -105,5 +115,26 @@
             console.log("[ERROR] Aucune donnée trouve pour MOD");
         }
     }
+
+    $(document).ready(function() {
+    GetMOD();
+});
+
+
+//On va récupérer dans la table Couf_ff pour compléter FF
+function GetMOD() {
+    $.ajax({
+        url: '/fetch-mod',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            // Insérer la valeur de Cout_ff dans l'input
+            $('#TauxHoraire').val(data.Taux_horaire);
+        },
+        error: function(xhr, status, error) {
+            console.error("Erreur AJAX: " + status + "; " + error);
+        }
+    });
+}
 </script>
 </div>

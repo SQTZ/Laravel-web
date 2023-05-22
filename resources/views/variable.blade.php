@@ -30,6 +30,11 @@
             </div>
         </div>
 
+
+        <div class="mt-24 ml-4">
+            <h2 class="text-white text-2xl">Historique (Soon)</h2>
+        </div>
+
 </x-app-layout>
 
 <script>
