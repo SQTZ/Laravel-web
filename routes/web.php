@@ -53,9 +53,11 @@ Route::group([], function () {
 });
 
 
-// Route -- Dashboard -- Créer un article
+// Route -- Editor -- Créer un article
 Route::get('editor', [CreateController::class, 'index'])->name('editor');
 Route::get('/fetch-data', [CreateController::class, 'fetchData']);
+Route::get('/fetch-ff', [CreateController::class, 'fetchFF']);
+
 
 
 // Route -- Variables -- Ajouter

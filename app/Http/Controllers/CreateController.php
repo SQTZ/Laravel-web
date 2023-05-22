@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\G_produit;
+use App\Models\G_variable;
 
 class CreateController extends Controller
 {
@@ -23,6 +24,17 @@ class CreateController extends Controller
             return response()->json(['error' => 'Aucune donnée trouvée pour ce code article.']);
         }
     }
+
+    public function fetchFF() {
+        $data = G_variable::select('Cout_ff')->first();
+        
+        if ($data) {
+            return response()->json($data);
+        } else {
+            return response()->json(['error' => 'Aucune donnée trouvée.']);
+        }
+    }
+    
     
 
 }

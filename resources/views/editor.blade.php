@@ -1,8 +1,9 @@
 <x-app-layout>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-<body>
 
-</body>
 <table id="resultTable" class="m-auto mt-5 mb-24">
             <thead>
                 <tr>
@@ -44,9 +45,10 @@
     var resultMAT = parseInt(document.getElementById("resultMAT").value) || 0;
     var resultEMB = parseInt(document.getElementById("resultEMB").value) || 0;
     var resultMOO = parseInt(document.getElementById("resultMOD").value) || 0;
+    var resultFF = parseInt(document.getElementById("resultFF").value) || 0;
 
     // Je crée ma formule et je l'affiche dans l'input result pt.1
-    var resultTOTAL = (resultMAT + resultEMB + resultMOO);
+    var resultTOTAL = (resultMAT + resultEMB + resultMOO + resultFF);
     console.log("CalculTotal a été appelée, le total est " + resultTOTAL);  // Ajout de cette ligne
     document.getElementById("resultTOTAL").value = resultTOTAL;
 
@@ -61,6 +63,28 @@ function CalculFinal() {
     console.log("Le calcul final est fait, le PV est " + resultPV);  // Ajout de cette ligne
     document.getElementById("resultPV").value = resultPV;
 }
+
+$(document).ready(function() {
+    GetFF();
+});
+
+
+//On va récupérer dans la table Couf_ff pour compléter FF
+function GetFF() {
+    $.ajax({
+        url: '/fetch-ff',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            // Insérer la valeur de Cout_ff dans l'input
+            $('#resultFF').val(data.Cout_ff);
+        },
+        error: function(xhr, status, error) {
+            console.error("Erreur AJAX: " + status + "; " + error);
+        }
+    });
+}
+
 
 
 
