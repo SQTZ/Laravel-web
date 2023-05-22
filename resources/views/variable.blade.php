@@ -12,17 +12,17 @@
             <div class="flex flex-col">
                 <h3 class="text-xl text-white">Taux Horaire</h3>
                 <input type="text" id="TauxHoraire" class="h-8">
-                <p class="text-gray-500">TH Actuel: N/A</p>
+                <p id="pTauxHoraire" class="text-gray-500">TH Actuel: N/A</p>
             </div>
             <div class="flex flex-col">
                 <h3 class="text-xl text-white">Coût FF</h3>
                 <input type="text" id="CoutFF" class="h-8">
-                <p class="text-gray-500">FF Actuel: N/A</p>
+                <p id="pCoutFF" class="text-gray-500">FF Actuel: N/A</p>
             </div>
             <div class="flex flex-col">
                 <h3 class="text-xl text-white">Coût Bobine</h3>
                 <input type="text" id="CoutBobine" class="h-8">
-                <p class="text-gray-500">Coût Actuel: N/A</p>
+                <p id="pCoutBobine" class="text-gray-500">Coût Actuel: N/A</p>
             </div>
 
             <div>
@@ -64,6 +64,10 @@ $('#btnPush').click(function(event) {
             if (response) {
                 console.log(response);
                 alert('Données envoyées');
+
+                $('#pTauxHoraire').text('TH Actuel: ' + response.Taux_horaire);
+    $('#pCoutFF').text('FF Actuel: ' + response.Cout_ff);
+    $('#pCoutBobine').text('Coût Actuel: ' + response.Cout_bobine);
             } else {
                 alert('Erreur');
             }
