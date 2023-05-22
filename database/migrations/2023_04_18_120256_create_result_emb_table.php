@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('result_emb', function (Blueprint $table) {
+            $table->integer('Code_dossier');
             $table->integer('Code_article');
-            $table->integer('Reference');
             $table->text('Designation');
             $table->integer('Prix_kg');
             $table->integer('Quantite');

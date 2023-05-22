@@ -26,6 +26,7 @@
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" onchange="CalculFinal()"></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" readonly></td>
     </tr>
+    <button id="btnPush" class="bg-yellow-700 rounded-lg px-4 py-2">Push Me!</button>
 </tbody>
 
 

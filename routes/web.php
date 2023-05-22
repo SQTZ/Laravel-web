@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\VariableController;
+use App\Http\Controllers\PusherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route -- Variables --
-Route::get('variable', [VariableController::class, 'index'])->name('variable');
+
 
 // Route -- Dashboard --
 Route::group([], function () {
@@ -53,7 +53,8 @@ Route::group([], function () {
 });
 
 
-// Route -- Editor -- Créer un article
+
+// Route -- Editor --
 Route::get('editor', [CreateController::class, 'index'])->name('editor');
 Route::get('/fetch-data', [CreateController::class, 'fetchData']);
 Route::get('/fetch-ff', [CreateController::class, 'fetchFF']);
@@ -61,8 +62,16 @@ Route::get('/fetch-mod', [CreateController::class, 'fetchMOD']);
 
 
 
-// Route -- Variables -- Ajouter
+// Route -- Variables --
+Route::get('variable', [VariableController::class, 'index'])->name('variable');
 Route::post('/fetch-variable', [VariableController::class, 'deploy']);
+
+
+
+// Route -- Pusher --
+Route::post('/fetch-matdata', [PusherController::class, 'generateMAT']);
+
+
 
 // Route -- Authentification --
 Route::middleware('auth')->group(function () {

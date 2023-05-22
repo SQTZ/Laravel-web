@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('g_produit', function (Blueprint $table) {
+        Schema::create('g_produits', function (Blueprint $table) {
             $table->integer('Reference');
             $table->text('Designation');
             $table->integer('Prix_article_kg');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('g_produit');
+        Schema::dropIfExists('g_produits');
     }
 };

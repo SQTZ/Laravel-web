@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result_mat', function (Blueprint $table) {
+        Schema::create('result_mats', function (Blueprint $table) {
+            $table->integer('Code_dossier');
             $table->integer('Code_article');
-            $table->integer('Reference');
             $table->text('Designation');
             $table->integer('Prix_kg');
             $table->integer('Quantite');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('Cout_matiere');
             $table->integer('Freinte_globale');
             $table->integer('Resultat_mat');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('result_mat');
+        Schema::dropIfExists('result_mats');
     }
 };

@@ -1,4 +1,8 @@
 <!--Module pour la catégorie MAT-->
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
 
 <div class="mb-4">
     <div class="flex gap-8 items-center mb-4 ml-4">
@@ -165,6 +169,62 @@ function CalcReleaseMAT(formRow) {
 
     return result;
 }
+
+
+</script>
+
+<script>
+    //Requête ajax pour récupérer les données de la table variables
+
+    $(document).ready(function() {
+
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('#btnPush').click(function(event) {
+    event.preventDefault();
+
+    console.log($('#codeArticle').val());
+    console.log($('#designation').val());
+    console.log($('#prixKgMAT').val());
+    console.log($('#quantiteMAT').val());
+    console.log($('#freinteMAT').val());
+    console.log($('#poidsMatMAT').val());
+    console.log($('#coutMatiereMAT').val());
+    console.log($('#freinteGlobaleMAT').val());
+
+    $.ajax({
+        url: '/fetch-matdata',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        codeArticle: $('#codeArticle').val(),
+        designation: $('#designation').val(),
+        prixKgMAT: $('#prixKgMAT').val(),
+        quantiteMAT: $('#quantiteMAT').val(),
+        freinteMAT: $('#freinteMAT').val(),
+        poidsMatMAT: $('#poidsMatMAT').val(),
+        coutMatiereMAT: $('#coutMatiereMAT').val(),
+        freinteGlobaleMAT: $('#freinteGlobaleMAT').val(),
+    },
+
+        success: function(response) {
+            if (response) {
+                console.log(response);
+                alert('Données envoyées');
+
+            } else {
+                alert('Erreur');
+            }
+        }
+    });
+});
+
+});
+
 
 
 </script>

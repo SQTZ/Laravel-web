@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class result_mat extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'Code_dossier',
+        'Code_article',
+        'Designation',
+        'Prix_kg',
+        'Quantite',
+        'Freinte',
+        'Poids_mat',
+        'Cout_matiere',
+        'Freinte_globale',  
+    ];
+}

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('g_dashboard', function (Blueprint $table) {
-            $table->integer('Code_article');
+        Schema::create('g_dashboards', function (Blueprint $table) {
+            $table->integer('Code_dossier');
             $table->integer('MAT');
             $table->integer('EMB');
             $table->integer('MOD');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('g_dashboard');
+        Schema::dropIfExists('g_dashboards');
     }
 };
