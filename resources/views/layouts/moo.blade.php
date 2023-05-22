@@ -26,7 +26,7 @@
 
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Taux Horaire</label>
-                <input type="text" id="TauxHoraire" class="w-24 h-8" readonly/>
+                <input type="text" id="TauxHoraire" class="w-24 h-8 TauxHoraire" readonly/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
@@ -42,94 +42,80 @@
 
 
 <script>
-    function removeRowMOD(btn) {
-        let formRow = btn.closest('.formRowMOD');
-        let formRowCount = document.querySelectorAll('.formRowMOD').length;
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('btnAjouterLigneMOD').addEventListener('click', function() {
+            let formContainer = document.getElementById('formContainerMOD');
+            let lastRow = formContainer.querySelector('.formRowMOD:last-child');
+            let newRow = lastRow.cloneNode(true);
+            newRow.querySelectorAll('input').forEach(input => input.value = '');
+            formContainer.appendChild(newRow);
 
-        if (formRowCount > 1) {
+        });
+
+        document.querySelectorAll('.btnSupprimerLigne').forEach(button => {
+            button.addEventListener('click', function() {
+                removeRowMOD(this);
+            });
+        });
+    });
+
+    function removeRowMOD(button) {
+        let formRow = button.closest('.formRowMOD');
+        if (document.querySelectorAll('.formRowMOD').length > 1) {
             formRow.remove();
         } else {
             alert('Vous ne pouvez pas supprimer toutes les lignes !');
         }
     }
-
-    document.querySelectorAll('.formRowMOD button').forEach(button => {
-        button.addEventListener('click', function() {
-            removeRowMOD(this);
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-
-        document.querySelectorAll('.formRowMOD').forEach(formRow => {
-            attachEventListeners(formRow);
-        });
-
-        document.getElementById('btnAjouterLigneMOD').addEventListener('click', function() {
-            addNewFormMOD();
-        });
-
-        function addNewFormMOD() {
-            let formContainer = document.getElementById('formContainerMOD');
-            let lastRow = formContainer.querySelector('.formRowMOD:last-child');
-            let lastRowId = parseInt(lastRow.getAttribute('data-rowid'));
-            let newRowId = lastRowId + 1;
-
-            let newRow = lastRow.cloneNode(true);
-            newRow.setAttribute('data-rowid', newRowId);
-            newRow.querySelectorAll('input').forEach(input => {
-                input.id = input.id.replace(lastRowId, newRowId);
-                input.value = '';
-            });
-
-            formContainer.appendChild(newRow);
-            attachEventListeners(newRow);
-        }
-
-        
-    });
 </script>
 
 <script>
     var globalResultMOD = 0;
 
-    function CalcReleaseMOD() {
-        var nbETPMOD = document.getElementById('nbETP').value;
-        var CadenceHoraireMOD = document.getElementById('CadenceHoraire').value;
-        var TauxHoraireMOD = document.getElementById('TauxHoraire').value;
+    function CalcReleaseMOD(formRow) {
+        var nbETPMOD = parseFloat(formRow.querySelector("#nbETP").value);
+        var CadenceHoraireMOD = parseFloat(formRow.querySelector("#CadenceHoraire").value);
+        var TauxHoraireMOD = parseFloat(formRow.querySelector("#TauxHoraire").value);
 
-        result1 = nbETPMOD / CadenceHoraireMOD;
-        resultfinal = result1 * TauxHoraireMOD;
-        document.getElementById('resultMOD').value = resultfinal;
-        CalculTotal();
+        let result1 = nbETPMOD / CadenceHoraireMOD;
+        let resultfinal = result1 * TauxHoraireMOD;
 
         return resultfinal;
     }
 
     function updateValuesMOD() {
-        var result = CalcReleaseMOD();
+        let formRows = document.querySelectorAll('.formRowMOD');
+        let total = 0;
 
-        if (result > 0) {
-            console.log("[MOD] Result:" + result);
-        } else {
-            console.log("[ERROR] Aucune donnée trouve pour MOD");
-        }
+        formRows.forEach(formRow => {
+            let result = CalcReleaseMOD(formRow);
+
+            total += result;
+        });
+
+        console.log("[MOD] Total: " + total);
+        document.getElementById('resultMOD').value = total;
+        CalculTotal();
     }
 
     $(document).ready(function() {
-    GetMOD();
+        GetMOD();
+    //dès que j'ajoute une nouvelle ligne, tu mets à jour les valeurs
+    $('#btnAjouterLigneMOD').click(function() {
+        GetMOD();
+    });
 });
 
 
-//On va récupérer dans la table Couf_ff pour compléter FF
+//On va récupérer dans la table taux_horaire la valeur et le mettre dans #TauxHoraire sur toutes les lignes existantes
 function GetMOD() {
     $.ajax({
         url: '/fetch-mod',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            // Insérer la valeur de Cout_ff dans l'input
-            $('#TauxHoraire').val(data.Taux_horaire);
+            // Insérer la valeur de taux horaire dans chaque input crée
+                        $('.TauxHoraire').val(data.Taux_horaire);
         },
         error: function(xhr, status, error) {
             console.error("Erreur AJAX: " + status + "; " + error);
