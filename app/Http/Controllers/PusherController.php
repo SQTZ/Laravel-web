@@ -18,10 +18,12 @@ class PusherController extends Controller
     //On génère la clé dossier
     public function generateDossier()
     {
-        $code = Str::random(5);
-
-        return $code;
+        if (!session()->has('code_dossier')) {
+            session(['code_dossier' => Str::random(5)]);
+        }
+        return session('code_dossier');
     }
+    
 
 
     public function generateDASHBOARD(Request $request)
@@ -69,6 +71,16 @@ class PusherController extends Controller
             'MC' => $resultMC,
             'PV' => $resultPV,
         ]);
+
+        session(['dashboard_called' => true]); // Marque que la méthode dashboard a été appelée
+
+        // Si les deux méthodes ont été appelées, réinitialise le code de dossier
+        if (session()->has('mat_called')) {
+            session()->forget('code_dossier');
+            session()->forget('dashboard_called');
+            session()->forget('mat_called');
+        }
+
 
         if ($data) {
             return response()->json($data);
@@ -134,11 +146,23 @@ class PusherController extends Controller
             'Freinte_globale' => $freinteGlobaleMAT,
         ]);
 
+        session(['mat_called' => true]); // Marque que la méthode MAT a été appelée
+
+        // Si les deux méthodes ont été appelées, réinitialise le code de dossier
+        if (session()->has('dashboard_called')) {
+            session()->forget('code_dossier');
+            session()->forget('dashboard_called');
+            session()->forget('mat_called');
+        }
+        
+
         if ($data) {
             return response()->json($data);
         } else {
             return response()->json(['error' => "J'arrive pas à l'envoyer"]);
         }
+
+        
     }
 
     

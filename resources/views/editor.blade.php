@@ -37,7 +37,7 @@
         @include('layouts.emb')
         @include('layouts.moo')
 
-
+<button id="tester" class="text-white">Tester</button>
 
         <script>
 
@@ -141,5 +141,6 @@ $('#btnPush').click(function(event) {
 
 
 </script>
+
 
 </x-app-layout>
