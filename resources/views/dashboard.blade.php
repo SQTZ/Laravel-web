@@ -47,14 +47,16 @@
       <td class="border px-4 py-2">{{ $article->MC }}</td>
       <td class="border px-4 py-2">{{ $article->PV }}</td>
       <td class="border px-4 py-2">{{ $article->Version }}</td>
-      <td class="border px-4 py-2">{{ $article->Date }}</td>
+      <td class="border px-4 py-2">{{ $article->updated_at }}</td>
       <td class="border px-4 py-2">
-        <a href="{{ url("show/{$article->Code_article}") }}">Visualiser</a>
-        <a href="{{ url("edit/{$article->Code_article}") }}">Modifier</a>
+        <div class="flex justify-between">
+        <a class="bg-blue-500 p-2 rounded-lg" href="{{ url("show/{$article->Code_article}") }}"><i class="fa-regular fa-eye"></i></a>
+        <a class="bg-yellow-600 p-2 rounded-lg" href="{{ url("edit/{$article->Code_article}") }}"><i class="fa-regular fa-pen-to-square"></i></a>
         <form action="{{ url("delete/{$article->Code_article}") }}" method="POST">
           @csrf
-          <button type="submit">Supprimer</button>
+          <button type="submit" class="bg-red-500 p-2 rounded-lg"><i class="fa-solid fa-trash"></i></button>
         </form>
+        </div>
       </td>
     </tr>
     @endforeach
@@ -67,3 +69,5 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="https://kit.fontawesome.com/0ab3d6a971.js" crossorigin="anonymous"></script>

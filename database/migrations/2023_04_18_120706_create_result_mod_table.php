@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result_mod', function (Blueprint $table) {
-            $table->integer('Code_dossier');
+        Schema::create('result_mods', function (Blueprint $table) {
+            $table->text('Code_dossier');
             $table->text('Metier');
             $table->integer('Nb_etp');
             $table->integer('Cadence_horaire');
-            $table->integer('Resultat_mod');
+            $table->integer('Taux_horaire');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('result_mod');
+        Schema::dropIfExists('result_mods');
     }
 };

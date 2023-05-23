@@ -48,8 +48,7 @@ Route::group([], function () {
         $articles = \App\Models\G_dashboard::where('Code_dossier', 'LIKE', '%' . $search_text . '%')->get();
     
         return view('dashboard', compact('articles', 'search_text'));
-    });
-    
+    });  
 
 });
 
@@ -71,6 +70,8 @@ Route::post('/fetch-variable', [VariableController::class, 'deploy']);
 
 // Route -- Pusher --
 Route::post('/fetch-matdata', [PusherController::class, 'generateMAT']);
+Route::post('/fetch-embdata', [PusherController::class, 'generateEMB']);
+Route::post('/fetch-moddata', [PusherController::class, 'generateMOD']);
 Route::post('/fetch-tabledata', [PusherController::class, 'generateDASHBOARD']);
 
 

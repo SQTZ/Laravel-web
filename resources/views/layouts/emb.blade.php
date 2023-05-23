@@ -165,4 +165,60 @@ function CalcReleaseEMB(formRow) {
     return result;
 }
 </script>
+
+<script>
+    //Requête ajax pour récupérer les données de la table variables
+
+    $(document).ready(function() {
+
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('#btnPush').click(function(event) {
+    event.preventDefault();
+
+    console.log($('#codeArticle').val());
+    console.log($('#designation').val());
+    console.log($('#prixKgEMB').val());
+    console.log($('#quantiteEMB').val());
+    console.log($('#freinteEMB').val());
+    console.log($('#poidsMatEMB').val());
+    console.log($('#coutMatiereEMB').val());
+    console.log($('#freinteGlobaleEMB').val());
+
+    $.ajax({
+        url: '/fetch-embdata',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        codeArticle: $('#codeArticle').val(),
+        designation: $('#designation').val(),
+        prixKgEMB: $('#prixKgEMB').val(),
+        quantiteEMB: $('#quantiteEMB').val(),
+        freinteEMB: $('#freinteEMB').val(),
+        poidsMatEMB: $('#poidsMatEMB').val(),
+        coutMatiereEMB: $('#coutMatiereEMB').val(),
+        freinteGlobaleEMB: $('#freinteGlobaleEMB').val(),
+    },
+
+        success: function(response) {
+            if (response) {
+                console.log(response);
+                alert('Données envoyées');
+
+            } else {
+                alert('Erreur');
+            }
+        }
+    });
+});
+
+});
+
+
+
+</script>
 </div>

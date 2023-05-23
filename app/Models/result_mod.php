@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class result_mod extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'Code_dossier',
+        'Metier',
+        'Nb_etp',  
+        'Cadence_horaire',
+        'Taux_horaire',
+    ];
 }

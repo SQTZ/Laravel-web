@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result_emb', function (Blueprint $table) {
-            $table->integer('Code_dossier');
+        Schema::create('result_embs', function (Blueprint $table) {
+            $table->text('Code_dossier');
             $table->integer('Code_article');
             $table->text('Designation');
             $table->integer('Prix_kg');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('Poids_mat');
             $table->integer('Cout_matiere');
             $table->integer('Freinte_globale');
-            $table->integer('Resultat_emb');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('result_emb');
+        Schema::dropIfExists('result_embs');
     }
 };

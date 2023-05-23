@@ -17,16 +17,16 @@
             </div>
             <div class="flex flex-col">
                 <label for="nbETP" class="text-white">Nb ETP</label>
-                <input type="text" id="nbETP" class="w-24 h-8"/>
+                <input type="text" id="Nb_etp" class="w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
-                <input type="text" id="CadenceHoraire" class="w-24 h-8"/>
+                <input type="text" id="Cadence_horaire" class="w-24 h-8"/>
             </div>
 
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Taux Horaire</label>
-                <input type="text" id="TauxHoraire" class="w-24 h-8 TauxHoraire" readonly/>
+                <input type="text" id="Taux_horaire" class="w-24 h-8 Taux_horaire" readonly/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
@@ -73,9 +73,9 @@
     var globalResultMOD = 0;
 
     function CalcReleaseMOD(formRow) {
-        var nbETPMOD = parseFloat(formRow.querySelector("#nbETP").value);
-        var CadenceHoraireMOD = parseFloat(formRow.querySelector("#CadenceHoraire").value);
-        var TauxHoraireMOD = parseFloat(formRow.querySelector("#TauxHoraire").value);
+        var nbETPMOD = parseFloat(formRow.querySelector("#Nb_etp").value);
+        var CadenceHoraireMOD = parseFloat(formRow.querySelector("#Cadence_horaire").value);
+        var TauxHoraireMOD = parseFloat(formRow.querySelector("#Taux_horaire").value);
 
         let result1 = nbETPMOD / CadenceHoraireMOD;
         let resultfinal = result1 * TauxHoraireMOD;
@@ -115,12 +115,61 @@ function GetMOD() {
         dataType: 'json',
         success: function(data) {
             // Insérer la valeur de taux horaire dans chaque input crée
-                        $('.TauxHoraire').val(data.Taux_horaire);
+                        $('.Taux_horaire').val(data.Taux_horaire);
         },
         error: function(xhr, status, error) {
             console.error("Erreur AJAX: " + status + "; " + error);
         }
     });
 }
+</script>
+
+
+<script>
+    //Requête ajax pour récupérer les données de la table variables
+
+    $(document).ready(function() {
+
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('#btnPush').click(function(event) {
+    event.preventDefault();
+
+    console.log($('#Metier').val());
+    console.log($('#Nb_etp').val());
+    console.log($('#Cadence_horaire').val());
+    console.log($('#Taux_horaire').val());
+
+    $.ajax({
+        url: '/fetch-moddata',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        Metier: $('#Metier').val(),
+        Nb_etp: $('#Nb_etp').val(),
+        Cadence_horaire: $('#Cadence_horaire').val(),
+        Taux_horaire: $('#Taux_horaire').val(),
+    },
+
+        success: function(response) {
+            if (response) {
+                console.log(response);
+                alert('Données envoyées');
+
+            } else {
+                alert('Erreur');
+            }
+        }
+    });
+});
+
+});
+
+
+
 </script>
 </div>

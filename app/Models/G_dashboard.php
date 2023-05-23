@@ -18,6 +18,6 @@ class G_dashboard extends Model
         'TOTAL',
         'MC',
         'PV',
-        'Version',  
+        'Version',
     ];
 }

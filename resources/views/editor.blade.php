@@ -37,7 +37,6 @@
         @include('layouts.emb')
         @include('layouts.moo')
 
-<button id="tester" class="text-white">Tester</button>
 
         <script>
 
