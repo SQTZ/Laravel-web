@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('EMB');
             $table->integer('MOD');
             $table->integer('FF');
+            $table->integer('TOTAL');
             $table->integer('MC');
             $table->integer('PV');
             $table->integer('Version');

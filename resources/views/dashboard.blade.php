@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+    @vite('resources/css/app.css')
         <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
