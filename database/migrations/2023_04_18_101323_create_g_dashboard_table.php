@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('TOTAL');
             $table->integer('MC');
             $table->integer('PV');
-            $table->integer('Version');
+            $table->integer('Version')->nullable();
             $table->timestamps();
         });
     }
