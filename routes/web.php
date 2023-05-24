@@ -36,10 +36,15 @@ Route::group([], function () {
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     // Route -- Dashboard -- Afficher un article
-    Route::get('show/{Code_dossier}', function ($Code_article) {
-        $article = \App\Models\G_dashboard::where('Code_dossier', $Code_article)->first();
-        return view('show', compact('article'));
+    Route::get('show/{Code_dossier}', function ($Code_dossier) {
+        $versions = \App\Models\G_dashboard::where('Code_dossier', $Code_dossier)->get();
+
+        //J'utilise ce paramétrage pour afficher toutes les versions disponibles et d'éviter de duppliquer le code_dossier si on a plusieurs versions.
+        $uniqueVersions = $versions->pluck('Version')->unique();
+        return view('show', compact('uniqueVersions', 'Code_dossier'));
     });
+    
+    
 
     // Route -- Dashboard -- Rechercher un article
     Route::get('search', function (\Illuminate\Http\Request $request) {
@@ -55,10 +60,12 @@ Route::group([], function () {
 
 
 // Route -- Editor --
-Route::get('editor', [CreateController::class, 'index'])->name('editor');
+Route::get('editor', [CreateController::class, 'create'])->name('editor.create');
 Route::get('/fetch-data', [CreateController::class, 'fetchData']);
 Route::get('/fetch-ff', [CreateController::class, 'fetchFF']);
 Route::get('/fetch-mod', [CreateController::class, 'fetchMOD']);
+Route::get('editor/{Code_dossier}/{version}', [CreateController::class, 'show'])->name('editor.show');
+
 
 
 

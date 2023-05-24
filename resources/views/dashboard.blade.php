@@ -32,7 +32,7 @@
       <th class="border px-4 py-2" scope="col">FF</th>
       <th class="border px-4 py-2" scope="col">MC</th>
       <th class="border px-4 py-2" scope="col">PV</th>
-      <th class="border px-4 py-2" scope="col">Version</th>
+      <th class="border px-4 py-2" scope="col">Version(s)</th>
       <th class="border px-4 py-2" scope="col">Date</th>
       <th class="border px-4 py-2" scope="col">Actions</th>
     </tr>
@@ -47,13 +47,13 @@
       <td class="border px-4 py-2">{{ $article->FF }}</td>
       <td class="border px-4 py-2">{{ $article->MC }}</td>
       <td class="border px-4 py-2">{{ $article->PV }}</td>
-      <td class="border px-4 py-2">{{ $article->Version }}</td>
+      <td class="border px-4 py-2">v.{{ $article->Version }}</td>
       <td class="border px-4 py-2">{{ $article->updated_at }}</td>
       <td class="border px-4 py-2">
         <div class="flex justify-between">
-        <a class="bg-blue-500 p-2 rounded-lg" href="{{ url("show/{$article->Code_article}") }}"><i class="fa-regular fa-eye"></i></a>
-        <a class="bg-yellow-600 p-2 rounded-lg" href="{{ url("edit/{$article->Code_article}") }}"><i class="fa-regular fa-pen-to-square"></i></a>
-        <form action="{{ url("delete/{$article->Code_article}") }}" method="POST">
+        <a class="bg-blue-500 p-2 rounded-lg" href="{{ url("show/{$article->Code_dossier}") }}"><i class="fa-regular fa-eye"></i></a>
+        <a class="bg-yellow-600 p-2 rounded-lg" href="{{ url("edit/{$article->Code_dossier}") }}"><i class="fa-regular fa-pen-to-square"></i></a>
+        <form action="{{ url("delete/{$article->Code_dossier}") }}" method="POST">
           @csrf
           <button type="submit" class="bg-red-500 p-2 rounded-lg"><i class="fa-solid fa-trash"></i></button>
         </form>

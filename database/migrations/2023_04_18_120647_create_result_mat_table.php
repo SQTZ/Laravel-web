@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('result_mats', function (Blueprint $table) {
+            $table->increments('id');
             $table->text('Code_dossier');
+            $table->integer('Version');
             $table->integer('Code_article');
             $table->text('Designation');
             $table->integer('Prix_kg');

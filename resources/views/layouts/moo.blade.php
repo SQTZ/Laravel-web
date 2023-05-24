@@ -9,6 +9,32 @@
             <button type="button" id="btnAjouterLigneMOD" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
     </div>
 
+    @if(isset($dossierMOD))
+    <div id="formContainerMOD">
+        <form id="calcul-form" class="ml-4 gap-4 formRowMOD flex" data-rowid="1">
+            <div class="flex flex-col">
+                <label for="Metier" class="text-white">Métier</label>
+                <input type="text" id="Metier" class="w-24 h-8" value="{{ $dossierMOD->Metier }}">
+            </div>
+            <div class="flex flex-col">
+                <label for="nbETP" class="text-white">Nb ETP</label>
+                <input type="text" id="Nb_etp" class="w-24 h-8" value="{{ $dossierMOD->Nb_etp }}"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
+                <input type="text" id="Cadence_horaire" class="w-24 h-8" value="{{ $dossierMOD->Cadence_horaire }}"/>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="CadenceHoraire" class="text-white">Taux Horaire</label>
+                <input type="text" id="Taux_horaire" class="w-24 h-8 Taux_horaire" value="{{ $dossierMOD->Taux_horaire }}" readonly/>
+            </div>
+
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
+        </form>
+    </div>
+
+    @else
     <div id="formContainerMOD">
         <form id="calcul-form" class="ml-4 gap-4 formRowMOD flex" data-rowid="1">
             <div class="flex flex-col">
@@ -32,6 +58,7 @@
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
         </form>
     </div>
+    @endif
     <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="updateValuesMOD()">Calculer MOD</button>
 
     <style>

@@ -19,10 +19,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <h1>Code article n°{{ $article->Code_article }}</h1>
-                <br>
-                <h2>Version(s) disponible(s):</h2>
-                <p>v{{ $article->Version }}</p>
+                <h1>Code dossier : {{ $Code_dossier }}</h1>
+                
+                <div class="flex gap-4">
+                @foreach($uniqueVersions as $version)
+    <a href="{{ route('editor.show', ['Code_dossier' => $Code_dossier, 'version' => $version]) }}" class="hover:text-blue-500 text-xl">v{{ $version }}</a>
+@endforeach
+
+
+                </div>
+
+
+
                 </div>
             </div>
         </div>

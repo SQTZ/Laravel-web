@@ -19,8 +19,9 @@ class PusherController extends Controller
     public function generateDossier()
     {
         if (!session()->has('code_dossier')) {
-            session(['code_dossier' => Str::random(5)]);
+            session(['code_dossier' => str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT)]);
         }
+        
         return session('code_dossier');
     }
     
@@ -60,6 +61,8 @@ class PusherController extends Controller
             dd('resultPV is empty');
         }
 
+        $Version = +1;
+
         //j'envoie les données dans la base de données
         $data = G_dashboard::create([
             'Code_dossier' => $this->generateDossier(),
@@ -70,6 +73,7 @@ class PusherController extends Controller
             'TOTAL' => $resultTOTAL,
             'MC' => $resultMC,
             'PV' => $resultPV,
+            'Version' => $Version,
         ]);
 
         session(['dashboard_called' => true]); // Marque que la méthode dashboard a été appelée
@@ -131,11 +135,12 @@ class PusherController extends Controller
             dd('freinteGlobaleMAT is empty');
         }
 
-
+        $Version = +1;
 
         //j'envoie les données dans la base de données
         $data = result_mat::create([
             'Code_dossier' => $this->generateDossier(),
+            'Version' => $Version,
             'Code_article' => $codeArticle,
             'Designation' => $designation,
             'Prix_kg' => $prixKgMAT,
@@ -208,11 +213,13 @@ class PusherController extends Controller
             dd('freinteGlobaleEMB is empty');
         }
 
+        $Version = +1;
 
 
         //j'envoie les données dans la base de données
         $data = result_emb::create([
             'Code_dossier' => $this->generateDossier(),
+            'Version' => $Version,
             'Code_article' => $codeArticle,
             'Designation' => $designation,
             'Prix_kg' => $prixKgEMB,
@@ -270,12 +277,13 @@ class PusherController extends Controller
             dd('Taux_horaire is empty');
         }
         
-
+        $Version = +1;
 
 
         //j'envoie les données dans la base de données
         $data = result_mod::create([
             'Code_dossier' => $this->generateDossier(),
+            'Version' => $Version,
             'Metier' => $Metier,
             'Nb_etp' => $Nb_etp,
             'Cadence_horaire' => $Cadence_horaire,

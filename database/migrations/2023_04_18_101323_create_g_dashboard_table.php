@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('g_dashboards', function (Blueprint $table) {
+            $table->increments('id');
             $table->text('Code_dossier');
             $table->integer('MAT');
             $table->integer('EMB');

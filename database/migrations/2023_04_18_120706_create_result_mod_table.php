@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('result_mods', function (Blueprint $table) {
+            $table->increments('id');
             $table->text('Code_dossier');
+            $table->integer('Version');
             $table->text('Metier');
             $table->integer('Nb_etp');
             $table->integer('Cadence_horaire');

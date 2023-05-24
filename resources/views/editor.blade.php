@@ -4,19 +4,36 @@
 </head>
 
 
+
 <table id="resultTable" class="m-auto mt-5 mb-24">
             <thead>
                 <tr>
                     <th class="border border-gray-300 p-2 text-white">MAT</th>
                     <th class="border border-gray-300 p-2 text-white">EMB</th>
-                    <th class="border border-gray-300 p-2 text-white">MOO</th>
+                    <th class="border border-gray-300 p-2 text-white">MOD</th>
                     <th class="border border-gray-300 p-2 text-white">FF</th>
                     <th class="border border-gray-300 p-2 text-white">TOTAL</th>
                     <th class="border border-gray-300 p-2 text-white">MC</th>
                     <th class="border border-gray-300 p-2 text-white">PV</th>
                 </tr>
             </thead>
+            @if(isset($dossier))
             <tbody>
+    <tr id="resultTD">
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMAT" value="{{ $dossier->MAT }}" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultEMB" value="{{ $dossier->EMB }}" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOD" value="{{ $dossier->MOD }}" oninput="CalculTotal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultFF" value="{{ $dossier->FF }}" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" value="{{ $dossier->TOTAL }}" oninput="CalculFinal()" readonly></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" value="{{ $dossier->MC }}" onchange="CalculFinal()"></td>
+        <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" value="{{ $dossier->PV }}" readonly></td>
+    </tr>
+    <button id="btnPush" class="bg-yellow-700 rounded-lg px-4 py-2">Push Me!</button>
+</tbody>
+
+            
+@else
+<tbody>
     <tr id="resultTD">
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMAT" oninput="CalculTotal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultEMB" oninput="CalculTotal()" readonly></td>
@@ -28,6 +45,7 @@
     </tr>
     <button id="btnPush" class="bg-yellow-700 rounded-lg px-4 py-2">Push Me!</button>
 </tbody>
+@endif
 
 
         </table>

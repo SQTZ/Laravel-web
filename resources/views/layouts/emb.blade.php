@@ -6,6 +6,47 @@
             <button type="button" id="btnAjouterLigneEMB" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
     </div>
 
+    @if(isset($dossierEMB))
+    <div id="formContainerEMB">
+        <form id="calcul-form" class="ml-4 gap-4 formRowEMB flex" data-rowid="1">
+            <div class="flex flex-col">
+                <label for="codeArticle" class="text-white">Code article</label>
+                <input type="text" id="codeArticle" class="w-24 h-8" value="{{ $dossierEMB->Code_article }}">
+            </div>
+            <div class="flex flex-col">
+                <label for="designation" class="text-white">Désignation</label>
+                <input type="text" id="designation" class="h-8" value="{{ $dossierEMB->Designation }}" readonly/>
+            </div>
+            <div class="flex flex-col">
+                <label for="prixKg" class="text-white">Prix /kg</label>
+                <input type="text" id="prixKgEMB" class="w-24 h-8" value="{{ $dossierEMB->Prix_kg }}" readonly/>
+            </div>
+            <div class="flex flex-col">
+                <label for="quantite" class="text-white">Quantité</label>
+                <input type="text" id="quantiteEMB" class="w-24 h-8" value="{{ $dossierEMB->Quantite }}"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="freinte" class="text-white">Freinte</label>
+                <input type="text" id="freinteEMB" class="w-24 h-8" value="{{ $dossierEMB->Freinte }}"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="poidsMat" class="text-white">Poids MAT</label>
+                <input type="text" id="poidsMatEMB" class="w-24 h-8" value="{{ $dossierEMB->Poids_mat }}" readonly/>
+            </div>
+            <div class="flex flex-col">
+                <label for="coutMatiere" class="text-white">Coût matière</label>
+                <input type="text" id="coutMatiereEMB" class="w-24 h-8" value="{{ $dossierEMB->Cout_matiere }}" readonly/>
+            </div>
+            <div class="flex flex-col">
+                <label for="freinteGlobale" class="text-white">Freinte globale</label>
+                <input type="text" id="freinteGlobaleEMB" class="h-8" value="{{ $dossierEMB->Freinte_globale }}"/>
+            </div>
+
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowEMB(this)">Supprimer</button>
+        </form>
+    </div>
+
+    @else
     <div id="formContainerEMB">
         <form id="calcul-form" class="ml-4 gap-4 formRowEMB flex" data-rowid="1">
             <div class="flex flex-col">
@@ -44,6 +85,7 @@
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowEMB(this)">Supprimer</button>
         </form>
     </div>
+    @endif
     <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="updateValuesEMB()">Calculer EMB</button>
 
     <style>
