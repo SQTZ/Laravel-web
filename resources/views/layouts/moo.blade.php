@@ -196,7 +196,5 @@ $('#btnPush').click(function(event) {
 
 });
 
-
-
 </script>
 </div>
