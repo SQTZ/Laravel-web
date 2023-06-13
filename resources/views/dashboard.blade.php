@@ -13,7 +13,7 @@
 
 
 
-        <a class="bg-red-500 px-3 py-1 rounded-lg text-white" href="editor">Créer</a>
+        <a class="border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-lg hover:bg-blue-500 hover:text-white duration-150" href="editor">Créer</a>
         </div>
     </x-slot>
 
@@ -21,9 +21,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+
+            <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <h1>Liste des produits</h1>
                 <table class="table-auto w-full">
   <thead>
     <tr>
@@ -40,8 +40,12 @@
     </tr>
   </thead>
   <tbody>
+
+
     @foreach($articles as $article)
     <tr>
+
+
       <td class="border px-4 py-2 w-20">{{ $article->Code_dossier }}</td>
       <td class="border px-4 py-2 w-3">{{ $article->MAT }}</td>
       <td class="border px-4 py-2 w-3">{{ $article->EMB }}</td>
@@ -60,6 +64,9 @@
         </form>
         </div>
       </td>
+
+
+
     </tr>
     @endforeach
   </tbody>

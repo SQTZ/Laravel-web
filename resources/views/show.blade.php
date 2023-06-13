@@ -5,34 +5,20 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <div class="flex">
-                <p><a class="text-white" href="../dashboard">Retour</a></p>
-            </div>
-
-
-            <!--Barre de navigation-->
-            @include('partials.search')
-
-
-
-            <a class="bg-red-500 px-3 py-1 rounded-lg text-white" href="#">Créer</a>
-        </div>
+        @include('partials.menu')
     </x-slot>
 
     <div class="py-12 mx-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>Code dossier : {{ $Code_dossier }}</h1>
+        <div class="mx-auto sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl">
+                <div class="p-4 text-gray-900 dark:text-gray-100">
+                    <h1 class="text-2xl font-bold">Code dossier : <span class="text-blue-500 font-medium text-xl">{{ $Code_dossier }}</span></h1>
 
-                    <div class="flex gap-4">
-
+                    <h2 class="text-gray-400">Choisissez une donnée parmi les versions disponibles</h2>
+                    <div class="grid grid-cols-5 md:grid-cols-10 gap-3 mt-3">
                         @foreach($uniqueVersions as $version)
-                        <a href="{{ route('editor.show', ['Code_dossier' => $Code_dossier, 'version' => $version]) }}" class="hover:text-blue-500 text-xl">v{{ $version }}</a>
+                        <a href="{{ route('editor.show', ['Code_dossier' => $Code_dossier, 'version' => $version]) }}" class="text-lg border-2 border-blue-500 px-2 py-1 rounded-lg text-blue-500 hover:bg-blue-500 hover:text-white duration-150 text-center">v{{ $version }}</a>
                         @endforeach
-
-
                     </div>
 
 
@@ -46,30 +32,33 @@
                 <!--Graphique-->
                 <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl p-4">
                     <h2 class="text-2xl font-bold text-white">Graphique</h2>
-                    <p class="text-gray-400 mb-4">Retrouvez graphiquement les prix de vente selon l'entité designé.</p>
+                    <p class="text-gray-400 mb-4">Retrouvez graphiquement les prix de vente selon l'entité designé. <a href="/documentation" class="text-blue-500 hover:underline">En savoir plus</a></p>
                     <div class="w-96">
-                    
                     </div>
 
                     {!! $chart->container() !!}
 
-
                     {!! $chart->script() !!}
 
-
-
-
                     <h3 class="text-xl font-bold text-white">Avancés</h3>
-                    
-                </div>
 
+                    <!--Exemple du résultat (in developpement)-->
+                    <p class="text-gray-400">Ici s'afficheront les résultats obtenus dû au calcul entre la dernière version et la nouvelle version.</p>
+                    <div class="flex justify-center mt-6">
+                        <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4">
+                        <p class="text-gray-400">Résultat obtenu:</p>
+                        <p style="color: {{ $lastPercentageChange >= 0 ? 'green' : 'red' }}"><?= $lastPercentageChange ?></p>
+                        </div>
+                    </div>
+                </div>
 
 
 
                 <!--Historique-->
                 <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl p-4">
                     <h2 class="text-2xl font-bold text-white">Historique</h2>
-                    <p class="text-gray-400 mb-4">Suivez les informations de votre entité dans cet historique.</p>
+                    <p class="text-gray-400 mb-4">Suivez les informations de votre entité dans cet historique. <a href="/documentation" class="text-blue-500 hover:underline">En savoir plus</a></p>
+                    <div class="overflow-y-scroll max-h-96">
                     <table class="w-full">
                         <thead>
                             <tr class="bg-gray-800 text-white">
@@ -79,18 +68,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($versions->sortByDesc('Version') as $record)
-    <tr class="bg-gray-700 text-gray-300">
-        <td class="py-2 px-4">{{ $record->Version }}</td>
-        <td class="py-2 px-4">{{ $record->updated_at->format('d/m/Y') }}</td>
-        <td class="py-2 px-4">{{ Auth::user()->name }}</td>
-    </tr>
-@endforeach
+                            @foreach ($versions->sortByDesc('Version') as $record)
+                            <tr class="bg-gray-700 text-gray-300">
+                                <td class="py-2 px-4">{{ $record->Version }}</td>
+                                <td class="py-2 px-4">{{ $record->updated_at->format('d/m/Y') }}</td>
+                                <td class="py-2 px-4">{{ Auth::user()->name }}</td>
+                            </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
+                    </div>
                 </div>
-
 
             </div>
 

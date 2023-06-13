@@ -10,11 +10,18 @@ class DashboardController extends Controller
 {
     public function dashboard()
 {
-    //On affiche le nombre de pages qu'on veut
-    $articles = G_dashboard::paginate(10);
+    // Sous-requête pour obtenir l'ID du dernier article pour chaque code_dossier
+    $latestArticleIDs = G_dashboard::select('code_dossier', G_dashboard::raw('MAX(id) as id'))
+        ->groupBy('code_dossier')
+        ->get()
+        ->pluck('id');
+
+    // Utilisez ces ID pour obtenir les articles correspondants
+    $articles = G_dashboard::whereIn('id', $latestArticleIDs)->paginate(10);
 
     return view('dashboard', compact('articles'));
 }
+
 
 
 
@@ -26,10 +33,13 @@ public function show(UserChart $chart, $Code_dossier)
     $uniqueVersions = $versions->pluck('Version')->unique();
 
     // Créer un graphique qui inclut des données pour chaque version
-    $chart = (new UserChart)->build($Code_dossier, $uniqueVersions);
+    $userChart = (new UserChart)->build($Code_dossier, $uniqueVersions);
+    $chart = $userChart['chart'];
+    $lastPercentageChange = $userChart['lastPercentageChange'];
 
-    return view('show', compact('uniqueVersions', 'Code_dossier', 'chart', 'user', 'versions'));
+    return view('show', compact('uniqueVersions', 'Code_dossier', 'chart', 'user', 'versions', 'lastPercentageChange'));
 }
+
 
 
 
