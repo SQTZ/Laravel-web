@@ -54,7 +54,7 @@
                     {!! $chart->container() !!}
 
 
-    {!! $chart->script() !!}
+                    {!! $chart->script() !!}
 
 
 

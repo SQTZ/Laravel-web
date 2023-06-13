@@ -42,19 +42,18 @@
   <tbody>
     @foreach($articles as $article)
     <tr>
-      <td class="border px-4 py-2">{{ $article->Code_dossier }}</td>
-      <td class="border px-4 py-2">{{ $article->MAT }}</td>
-      <td class="border px-4 py-2">{{ $article->EMB }}</td>
-      <td class="border px-4 py-2">{{ $article->MOD }}</td>
-      <td class="border px-4 py-2">{{ $article->FF }}</td>
-      <td class="border px-4 py-2">{{ $article->MC }}</td>
-      <td class="border px-4 py-2">{{ $article->PV }}</td>
-      <td class="border px-4 py-2">v.{{ $article->Version }}</td>
-      <td class="border px-4 py-2">{{ $article->updated_at }}</td>
-      <td class="border px-4 py-2">
-        <div class="flex justify-between">
+      <td class="border px-4 py-2 w-20">{{ $article->Code_dossier }}</td>
+      <td class="border px-4 py-2 w-3">{{ $article->MAT }}</td>
+      <td class="border px-4 py-2 w-3">{{ $article->EMB }}</td>
+      <td class="border px-4 py-2 w-3">{{ $article->MOD }}</td>
+      <td class="border px-4 py-2 w-3">{{ $article->FF }}</td>
+      <td class="border px-4 py-2 w-3">{{ $article->MC }}</td>
+      <td class="border px-4 py-2 w-3">{{ $article->PV }}</td>
+      <td class="border px-4 py-2 w-3">v.{{ $article->Version }}</td>
+      <td class="border px-4 py-2 w-48">{{ $article->updated_at }}</td>
+      <td class="border px-4 py-2 w-3">
+        <div class="flex justify-around">
         <a class="bg-blue-500 p-2 rounded-lg" href="{{ url("show/{$article->Code_dossier}") }}"><i class="fa-regular fa-eye"></i></a>
-        <a class="bg-yellow-600 p-2 rounded-lg" href="{{ url("edit/{$article->Code_dossier}") }}"><i class="fa-regular fa-pen-to-square"></i></a>
         <form action="{{ url("delete/{$article->Code_dossier}") }}" method="POST">
           @csrf
           <button type="submit" class="bg-red-500 p-2 rounded-lg"><i class="fa-solid fa-trash"></i></button>

@@ -8,25 +8,25 @@ class UserChart
 {
     public function build($Code_dossier, $versions)
 {
-    $chart = (new LarapexChart)->lineChart()
-                               ->setTitle('User Chart')
-                               ->setSubtitle('From January to March')
-                               ->setXAxis($versions->toArray());
+    $chart = (new LarapexChart)->lineChart();
 
-    // Ajouter une série de données pour chaque version
+    $versionData = [];
     foreach ($versions as $version) {
         $data = G_dashboard::where('Code_dossier', $Code_dossier)
                            ->where('Version', $version)
                            ->get()
                            ->pluck('PV')
                            ->toArray();
-
-        // Ajoute chaque version comme une série distincte
-        $chart->addData("Version $version", $data);
+                           
+        $versionData[] = $data[0] ?? null; // get the first PV value for the version, if it exists
     }
+
+    $chart->addData("Prix de Vente", $versionData); // add the PV data as a single series
+    $chart->setXAxis($versions->toArray()); // convert the collection to an array
 
     return $chart;
 }
+
 
 
 
