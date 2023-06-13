@@ -46,7 +46,7 @@
                 <!--Graphique-->
                 <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl p-4">
                     <h2 class="text-2xl font-bold text-white">Graphique</h2>
-                    <p class="text-gray-400 mb-4">Retrouver graphiquement les prix de vente selon l'entité designé.</p>
+                    <p class="text-gray-400 mb-4">Retrouvez graphiquement les prix de vente selon l'entité designé.</p>
                     <div class="w-96">
                     
                     </div>
@@ -60,7 +60,7 @@
 
 
                     <h3 class="text-xl font-bold text-white">Avancés</h3>
-                    <p>Résultats</p>
+                    
                 </div>
 
 
@@ -79,13 +79,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($versions as $record)
-                            <tr class="bg-gray-700 text-gray-300">
-                                <td class="py-2 px-4">{{ $record->Version }}</td>
-                                <td class="py-2 px-4">{{ $record->updated_at->format('d/m/Y') }}</td>
-                                <td class="py-2 px-4">{{ Auth::user()->name }}</td>
-                            </tr>
-                            @endforeach
+                        @foreach ($versions->sortByDesc('Version') as $record)
+    <tr class="bg-gray-700 text-gray-300">
+        <td class="py-2 px-4">{{ $record->Version }}</td>
+        <td class="py-2 px-4">{{ $record->updated_at->format('d/m/Y') }}</td>
+        <td class="py-2 px-4">{{ Auth::user()->name }}</td>
+    </tr>
+@endforeach
+
                         </tbody>
                     </table>
                 </div>
