@@ -4,6 +4,11 @@
 </head>
 
 <x-app-layout>
+<x-slot name="header">
+        @include('partials.menu')
+    </x-slot>
+
+    
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
         <div class="flex md:flex-row flex-col justify-between gap-8">
 
