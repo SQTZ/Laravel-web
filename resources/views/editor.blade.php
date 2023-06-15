@@ -1,4 +1,9 @@
 <x-app-layout>
+<div id="loading" class="fixed inset-0 flex items-center justify-center text-2xl font-semibold text-black bg-gray-900 z-50">
+    <!-- Ici, vous pouvez mettre l'animation de chargement que vous préférez. -->
+    <div class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+</div>
+
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -27,8 +32,10 @@
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" value="{{ $dossier->TOTAL }}" oninput="CalculFinal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" value="{{ $dossier->MC }}" onchange="CalculFinal()"></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" value="{{ $dossier->PV }}" readonly></td>
+        <td><input type="text" name="Code_dossier" id="Code_dossier" value="{{ $dossier->Code_dossier }}"></td>
+        
     </tr>
-    <button id="btnPush" class="bg-yellow-700 rounded-lg px-4 py-2">Push Me!</button>
+    <button id="btnPush" class="border-2 border-yellow-500 text-yellow-500 px-4 py-2 rounded-lg hover:bg-yellow-500 hover:text-white duration-150">Modifier</button>
 </tbody>
 
             
@@ -42,8 +49,9 @@
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" oninput="CalculFinal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" onchange="CalculFinal()"></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" readonly></td>
+        <td><input type="hidden" id="new_session"></td>
     </tr>
-    <button id="btnPush" class="bg-yellow-700 rounded-lg px-4 py-2">Push Me!</button>
+    <button id="btnPush" class="border-2 border-green-500 text-green-500 px-4 py-2 rounded-lg hover:bg-green-500 hover:text-white duration-150">Créer</button>
 </tbody>
 @endif
 
@@ -146,6 +154,10 @@ $('#btnPush').click(function(event) {
                 console.log(response);
                 alert('Données envoyées');
 
+                //On redirige vers la page dashboard
+                //window.location.href = "/dashboard";
+
+
             } else {
                 alert('Erreur');
             }
@@ -161,3 +173,10 @@ $('#btnPush').click(function(event) {
 
 
 </x-app-layout>
+
+<script>
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading');
+        loadingScreen.style.display = 'none';
+    });
+</script>
