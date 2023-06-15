@@ -1,4 +1,8 @@
 <x-app-layout>
+<div id="loading" class="fixed inset-0 flex items-center justify-center text-2xl font-semibold text-black bg-gray-900 z-50">
+    <!-- Ici, vous pouvez mettre l'animation de chargement que vous préférez. -->
+    <div class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+</div>
 
     <div x-data="{ open: true }" class="flex h-full">
         <!-- Sidebar -->
@@ -63,7 +67,7 @@
                     <img src="./wamp-home.png" alt="Accueil de wamp" class="w-2/3 ml-8">
                     <p class="text-gray-400 ml-8 mt-4">Une fois arrivé sur cette page, vous devrez vous rendre dans la section <span class="font-bold">PhpMyAdmin 5.1.1</span>, vous arriverez sur une page de connexion</p>
                     <img src="./login-phpmyadmin.png" alt="Page de login phpmyadmin" class="w-2/3 ml-8">
-                    <p class="text-gray-400 ml-8 mt-4">Vous n'avez rien à rentrer dans les champs demandés, il faudra juqte cliquer sur <span class="font-bold">Exécuter</span>.</p>
+                    <p class="text-gray-400 ml-8 mt-4">Vous n'avez rien à rentrer dans les champs demandés, il faudra juste cliquer sur <span class="font-bold">Exécuter</span>.</p>
                     <p class="text-gray-400 ml-8 mt-4">Maintenant la prochaine étape est de créer votre base de données. Vous devrez aller dans <span class="font-bold">Nouvelle base de données</span> et de saisir un nom pour votre base.</p>
                     <img src="./create-database-part1.png" alt="Etape de création de la database" class="ml-8">
                     <h4 class="text-white ml-8 mt-4">étape 2:</h4>
@@ -84,3 +88,10 @@
 
 
 </x-app-layout>
+
+<script>
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading');
+        loadingScreen.style.display = 'none';
+    });
+</script>

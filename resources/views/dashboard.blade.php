@@ -1,9 +1,13 @@
 <x-app-layout>
+<div id="loading" class="fixed inset-0 flex items-center justify-center text-2xl font-semibold text-black bg-gray-900 z-50">
+    <!-- Ici, vous pouvez mettre l'animation de chargement que vous préférez. -->
+    <div class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+</div>
 
 
     <x-slot name="header">
     @vite('resources/css/app.css')
-        <div class="flex justify-between items-center pt-16">
+        <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
         </h2>
@@ -84,3 +88,10 @@
 </x-app-layout>
 
 <script src="https://kit.fontawesome.com/0ab3d6a971.js" crossorigin="anonymous"></script>
+
+<script>
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading');
+        loadingScreen.style.display = 'none';
+    });
+</script>

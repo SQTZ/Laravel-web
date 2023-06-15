@@ -1,9 +1,13 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 
 <x-app-layout>
+<div id="loading" class="fixed inset-0 flex items-center justify-center text-2xl font-semibold text-black bg-gray-900 z-50">
+    <!-- Ici, vous pouvez mettre l'animation de chargement que vous préférez. -->
+    <div class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+</div>
+
 <x-slot name="header">
         @include('partials.menu')
     </x-slot>
@@ -121,5 +125,12 @@
             });
         });
 
+    });
+</script>
+
+<script>
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading');
+        loadingScreen.style.display = 'none';
     });
 </script>
