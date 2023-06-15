@@ -9,8 +9,11 @@ class VariableController extends Controller
 {
     public function index()
     {
-        return view('variable');
+        $datalist = G_variable::all();
+
+    return view('variable', compact('datalist'));
     }
+
 
     public function deploy(Request $request)
     {
