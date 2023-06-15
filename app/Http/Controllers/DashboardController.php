@@ -47,7 +47,7 @@ public function show(UserChart $chart, $Code_dossier)
     {
         $search_text = $request->input('search');
         
-        $articles = G_dashboard::where('Code_dossier', 'LIKE', '%' . $search_text . '%')->get();
+        $articles = G_dashboard::where('Code_dossier',  'LIKE', '%' . $search_text . '%')->paginate();
     
         return view('dashboard', compact('articles', 'search_text'));
     }

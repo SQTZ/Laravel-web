@@ -29,7 +29,7 @@ Route::get('/', function () {
 // Route -- Dashboard --
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/show/{Code_dossier}', [DashboardController::class, 'show'])->name('show');
-//Route::get('/search', [DashboardController::class, 'search'])->name('search');
+Route::get('/search', [DashboardController::class, 'search'])->name('search');
 
 
 // Route -- Editor --
