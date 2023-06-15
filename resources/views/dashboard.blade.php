@@ -1,4 +1,20 @@
 <x-app-layout>
+<style>
+  /* Définition du style pour la barre de défilement */
+::-webkit-scrollbar {
+  @apply w-2;
+  @apply bg-gray-300;
+}
+
+/* Définition du style pour le bouton de défilement */
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500;
+  @apply rounded-full;
+}
+
+</style>
+
+
     <x-slot name="header">
     @vite('resources/css/app.css')
         <div class="flex justify-between items-center">
