@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route -- Page d'accueil --
+// Route -- Page d'accueil redirective --
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 

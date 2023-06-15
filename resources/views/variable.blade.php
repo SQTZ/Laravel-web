@@ -9,7 +9,7 @@
     </x-slot>
 
     
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-16 pt-16">
         <div class="flex md:flex-row flex-col justify-between gap-8">
 
             <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl p-4 mx-4">
