@@ -86,7 +86,7 @@
                             <tr class="bg-gray-800 text-white">
                                 <th class="py-2 px-4 text-left">Version(s)</th>
                                 <th class="py-2 px-4 text-left">Date(s)</th>
-                                <th class="py-2 px-4 text-left">Modifié par</th>
+                                <th class="py-2 px-4 text-left">Prix de vente</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,7 +94,7 @@
                             <tr class="bg-gray-700 text-gray-300">
                                 <td class="py-2 px-4">{{ $record->Version }}</td>
                                 <td class="py-2 px-4">{{ $record->updated_at->format('d/m/Y') }}</td>
-                                <td class="py-2 px-4">{{ Auth::user()->name }}</td>
+                                <td class="py-2 px-4">{{ $record->PV }}€</td>
                             </tr>
                             @endforeach
 
