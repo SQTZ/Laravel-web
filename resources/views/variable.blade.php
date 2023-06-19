@@ -117,9 +117,7 @@
                         console.log(response);
                         alert('Données envoyées');
 
-                        $('#pTauxHoraire').text('TH Actuel: ' + response.Taux_horaire);
-                        $('#pCoutFF').text('FF Actuel: ' + response.Cout_ff);
-                        $('#pCoutBobine').text('Coût Actuel: ' + response.Cout_bobine);
+                        window.location.href = "/variable";
                     } else {
                         alert('Erreur');
                     }
