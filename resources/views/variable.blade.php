@@ -44,7 +44,7 @@
 
             <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl p-4 mx-4">
                 <h2 class="text-2xl font-bold text-white">Informations actives</h2>
-                <p class="text-gray-400 mb-4">Retrouvez les dernières informations inscrites des variables</p>
+                <p class="text-gray-400 mb-4">Retrouvez les dernières informations inscrites dans la base de données.</p>
                 <div class="max-h-96">
                     <table class="w-full">
                         <thead>
