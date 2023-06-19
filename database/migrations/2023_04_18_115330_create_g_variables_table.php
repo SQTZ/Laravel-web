@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('g_variables', function (Blueprint $table) {
             $table->id();
-            $table->integer('Taux_horaire');
-            $table->integer('Cout_ff');
-            $table->integer('Cout_bobine');
+            $table->decimal('Taux_horaire', 8, 2);
+            $table->decimal('Cout_ff', 8, 2);
+            $table->decimal('Cout_bobine', 8, 2);
             $table->timestamps();
         });
     }

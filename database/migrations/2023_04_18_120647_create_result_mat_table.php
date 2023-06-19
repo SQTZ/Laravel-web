@@ -17,12 +17,12 @@ return new class extends Migration
             $table->integer('Version');
             $table->integer('Code_article');
             $table->text('Designation');
-            $table->integer('Prix_kg');
+            $table->decimal('Prix_kg', 8, 2);
             $table->integer('Quantite');
-            $table->integer('Freinte');
-            $table->integer('Poids_mat');
-            $table->integer('Cout_matiere');
-            $table->integer('Freinte_globale');
+            $table->decimal('Freinte', 8, 2);
+            $table->decimal('Poids_mat', 8, 2);
+            $table->decimal('Cout_matiere', 8, 2);
+            $table->decimal('Freinte_globale', 8, 2);
             $table->timestamps();
         });
     }

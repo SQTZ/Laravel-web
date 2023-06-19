@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('Version');
             $table->text('Metier');
             $table->integer('Nb_etp');
-            $table->integer('Cadence_horaire');
-            $table->integer('Taux_horaire');
+            $table->decimal('Cadence_horaire', 8, 2);
+            $table->decimal('Taux_horaire', 8, 2);
             $table->timestamps();
         });
     }

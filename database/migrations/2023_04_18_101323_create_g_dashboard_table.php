@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('g_dashboards', function (Blueprint $table) {
             $table->increments('id');
             $table->text('Code_dossier');
-            $table->integer('MAT');
-            $table->integer('EMB');
-            $table->integer('MOD');
-            $table->integer('FF');
-            $table->integer('TOTAL');
-            $table->integer('MC');
-            $table->integer('PV');
+            $table->decimal('MAT', 8, 2);
+            $table->decimal('EMB', 8, 2);
+            $table->decimal('MOD', 8, 2);
+            $table->decimal('FF', 8, 2);
+            $table->decimal('TOTAL', 8, 2);
+            $table->decimal('MC', 8, 2);
+            $table->decimal('PV', 8, 2);
             $table->integer('Version')->nullable();
             $table->timestamps();
         });

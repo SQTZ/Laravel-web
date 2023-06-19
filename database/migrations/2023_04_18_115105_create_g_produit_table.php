@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('g_produits', function (Blueprint $table) {
             $table->integer('Reference');
             $table->text('Designation');
-            $table->integer('Prix_article_kg');
+            $table->decimal('Prix_article_kg', 8, 2);
             $table->text('Fournisseur');
-            $table->integer('Poids_MAT');
-            $table->integer('Cout_Matiere');
+            $table->decimal('Poids_MAT', 8, 2);
+            $table->decimal('Cout_Matiere', 8, 2);
         });
     }
 
