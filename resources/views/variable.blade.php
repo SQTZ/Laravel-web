@@ -1,5 +1,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Appliweb - Variables</title>
 </head>
 
 <x-app-layout>
@@ -18,7 +20,7 @@
 
             <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl p-4 mx-4">
                 <h1 class="text-2xl font-bold text-white">Variables</h1>
-                <h2 class="text-gray-400 mb-4">Ici, vous devrez inscrire vos variables si vous voulez que vos calculs ne soient pas faussés ou corrompus. Un souci ? Regardez la <a href="/documentation#variables" class="text-blue-500 hover:underline">Documentation</a>.</h2>
+                <h2 class="text-gray-400 mb-4">Ici, vous devrez inscrire vos variables si vous voulez pas que vos calculs ne soient pas faussés ou corrompus. Un souci ? Regardez la <a href="/documentation#variables" class="text-blue-500 hover:underline">Documentation</a>.</h2>
 
                 <div class="gap-10 justify-center items-center mt-10 grid grid-cols-1">
                     <div class="flex flex-col">

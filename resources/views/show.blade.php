@@ -1,5 +1,6 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <title>Appliweb - Show n°{{ $Code_dossier }}</title>
 </head>
 
 
