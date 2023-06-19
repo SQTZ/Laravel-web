@@ -23,8 +23,6 @@
         </div>
     </x-slot>
 
-    <h1 class="text-white">CRUD A REGARDER: https://www.youtube.com/watch?v=_LA9QsgJ0bw</h1>
-
     <div class="py-12 mx-4">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl">

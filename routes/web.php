@@ -30,6 +30,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/show/{Code_dossier}', [DashboardController::class, 'show'])->name('show');
 Route::get('/search', [DashboardController::class, 'search'])->name('search');
+Route::post('/delete/{Code_dossier}', [DashboardController::class, 'delete'])->name('delete');
 
 
 // Route -- Editor --

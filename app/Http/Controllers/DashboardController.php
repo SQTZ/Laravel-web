@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\G_dashboard;
 use App\Charts\UserChart;
+use App\Models\result_mat;
+use App\Models\result_emb;
+use App\Models\result_mod;
 
 class DashboardController extends Controller
 {
@@ -53,5 +56,20 @@ public function show(UserChart $chart, $Code_dossier)
         $articles = G_dashboard::where('Code_dossier',  'LIKE', '%' . $search_text . '%')->paginate();
     
         return view('dashboard', compact('articles', 'search_text'));
+    }
+
+    public function delete($Code_dossier)
+    {
+        $article_dashboard = G_dashboard::where('Code_dossier', $Code_dossier);
+        $article_mat = result_mat::where('Code_dossier', $Code_dossier);
+        $article_emb = result_emb::where('Code_dossier', $Code_dossier);
+        $article_mod = result_mod::where('Code_dossier', $Code_dossier);
+
+        $article_dashboard->delete();
+        $article_mat->delete();
+        $article_emb->delete();
+        $article_mod->delete();
+
+        return redirect('/dashboard');
     }
 }
