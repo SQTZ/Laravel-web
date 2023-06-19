@@ -49,12 +49,28 @@
 
                     <!--Exemple du résultat (in developpement)-->
                     <p class="text-gray-400">Ici s'afficheront les résultats obtenus dû au calcul entre la dernière version et la nouvelle version.</p>
-                    <div class="flex justify-center mt-6">
+                    <div class="flex justify-between items-center mt-6">
+
+                        <div class="grid gap-4">
+                            <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4">
+                            <p class="text-gray-400">Prix de vente maximum:</p>
+                            <p class="text-green-500">{{ $pvMax }}€</p>
+                            </div>
+
+                            <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4">
+                            <p class="text-gray-400">Prix de vente minimum:</p>
+                            <p class="text-red-500">{{ $pvMin }}€</p>
+                            </div>
+                    </div>
+
+                    <div>
                         <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4">
                         <p class="text-gray-400">Résultat obtenu:</p>
                         <p style="color: {{ $lastPercentageChange >= 0 ? 'green' : 'red' }}"><?= $lastPercentageChange ?></p>
                         </div>
+                        </div>
                     </div>
+
                 </div>
 
 

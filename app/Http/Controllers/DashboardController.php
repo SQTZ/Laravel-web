@@ -30,6 +30,9 @@ public function show(UserChart $chart, $Code_dossier)
     $versions = G_dashboard::where('Code_dossier', $Code_dossier)->get();
     $user = auth()->user();
 
+    $pvMax = $versions->max('PV');
+    $pvMin = $versions->min('PV');
+
     $uniqueVersions = $versions->pluck('Version')->unique();
 
     // Créer un graphique qui inclut des données pour chaque version
@@ -37,7 +40,7 @@ public function show(UserChart $chart, $Code_dossier)
     $chart = $userChart['chart'];
     $lastPercentageChange = $userChart['lastPercentageChange'];
 
-    return view('show', compact('uniqueVersions', 'Code_dossier', 'chart', 'user', 'versions', 'lastPercentageChange'));
+    return view('show', compact('uniqueVersions', 'Code_dossier', 'chart', 'user', 'versions', 'lastPercentageChange', 'pvMax', 'pvMin'));
 }
 
 
