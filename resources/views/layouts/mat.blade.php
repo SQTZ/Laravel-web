@@ -4,10 +4,10 @@
 
 </head>
 
-<div class="mb-4">
-    <div class="flex gap-8 items-center mb-4 ml-4">
+<div class="mb-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5">
+    <div class="flex gap-4 items-center mb-4 ml-4 ">
     <h2 class="text-xl text-white">Catégorie MAT</h2>
-            <button type="button" id="btnAjouterLigneMAT" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
+            <button type="button" id="btnAjouterLigneMAT" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"><i class="fa-solid fa-plus"></i></button>
     </div>
 
     @if(isset($dossierMAT))
@@ -46,7 +46,7 @@
                 <input type="text" id="freinteGlobaleMAT" class="h-8" value="{{ $dossierMAT->Freinte_globale }}"/>
             </div>
 
-            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)">Supprimer</button>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
     </div>
 
@@ -86,11 +86,11 @@
                 <input type="text" id="freinteGlobaleMAT" class="h-8"/>
             </div>
 
-            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)">Supprimer</button>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
     </div>
     @endif
-    <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="updateValuesMAT()">Calculer MAT</button>
+    
 
     <style>
         form input {
@@ -271,4 +271,6 @@ $('#btnPush').click(function(event) {
 
 
 </script>
+
+<script src="https://kit.fontawesome.com/0ab3d6a971.js" crossorigin="anonymous"></script>
 </div>

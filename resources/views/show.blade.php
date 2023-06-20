@@ -54,12 +54,12 @@
 
                         <div class="grid gap-4">
                             <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4">
-                            <p class="text-gray-400">Prix de vente maximum:</p>
+                            <p class="text-gray-400"><i class="fa-solid fa-arrow-trend-up text-green-500"></i> Prix de vente maximum:</p>
                             <p class="text-green-500">{{ $pvMax }}€</p>
                             </div>
 
-                            <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4">
-                            <p class="text-gray-400">Prix de vente minimum:</p>
+                            <div class="border-2 border-blue-500 flex px-4 py-2 rounded-lg gap-4 items-center">
+                            <p class="text-gray-400"><i class="fa-solid fa-arrow-trend-down text-red-500"></i> Prix de vente minimum:</p>
                             <p class="text-red-500">{{ $pvMin }}€</p>
                             </div>
                     </div>

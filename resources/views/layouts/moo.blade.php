@@ -3,10 +3,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<div class="pb-10">
-    <div class="flex gap-8 mb-4 mt-24 items-center ml-4">
+<div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5">
+    <div class="flex gap-4 items-center ml-4 mb-4">
         <h2 class="text-xl text-white">Catégorie MOD</h2>
-            <button type="button" id="btnAjouterLigneMOD" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">Ajouter</button>
+            <button type="button" id="btnAjouterLigneMOD" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"><i class="fa-solid fa-plus"></i></button>
     </div>
 
     @if(isset($dossierMOD))
@@ -30,7 +30,7 @@
                 <input type="text" id="Taux_horaire" class="w-24 h-8 Taux_horaire" value="{{ $dossierMOD->Taux_horaire }}" readonly/>
             </div>
 
-            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
     </div>
 
@@ -55,11 +55,11 @@
                 <input type="text" id="Taux_horaire" class="w-24 h-8 Taux_horaire" readonly/>
             </div>
 
-            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)">Supprimer</button>
+            <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
     </div>
     @endif
-    <button type="button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="updateValuesMOD()">Calculer MOD</button>
+    
 
     <style>
         form input {
@@ -198,4 +198,6 @@ $('#btnPush').click(function(event) {
 });
 
 </script>
+
+<script src="https://kit.fontawesome.com/0ab3d6a971.js" crossorigin="anonymous"></script>
 </div>
