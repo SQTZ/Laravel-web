@@ -49,7 +49,8 @@
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" oninput="CalculFinal()" readonly></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" onchange="CalculFinal()"></td>
         <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" readonly></td>
-        <td><input type="hidden" id="new_session"></td>
+        <td><input type="text" name="Code_dossier" id="Code_dossier"></td>
+        <!--<td><input type="hidden" id="new_session"></td>-->
     </tr>
     <button id="btnPush" class="border-2 border-green-500 text-green-500 px-4 py-2 rounded-lg hover:bg-green-500 hover:text-white duration-150">Créer</button>
 </tbody>
@@ -147,6 +148,7 @@ $('#btnPush').click(function(event) {
         resultTOTAL: $('#resultTOTAL').val(),
         resultMC: $('#resultMC').val(),
         resultPV: $('#resultPV').val(),
+        Code_dossier: $('#Code_dossier').val(),
     },
 
         success: function(response) {

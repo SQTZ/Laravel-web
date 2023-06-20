@@ -244,6 +244,7 @@ $('#btnPush').click(function(event) {
         poidsMatEMB: $('#poidsMatEMB').val(),
         coutMatiereEMB: $('#coutMatiereEMB').val(),
         freinteGlobaleEMB: $('#freinteGlobaleEMB').val(),
+        Code_dossier: $('#Code_dossier').val(),
     },
 
         success: function(response) {

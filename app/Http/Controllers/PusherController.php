@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use App\Models\G_dashboard;
 use App\Models\result_mat;
@@ -14,41 +13,47 @@ use Illuminate\Support\Facades\Log;
 
 class PusherController extends Controller
 {
-    // Génère un nouveau code_dossier si nécessaire et gère l'incrémentation de la version
-    private function prepareData(Request $request)
-    {
-        // Essayez d'obtenir le code_dossier de la session
-        $code_dossier = session('code_dossier');
-        $Version = $request->input('Version');
+    //TODO: Trouver un système qui va permettre de créer/modifier
+    /*
+        * Création: celle-ci devra générer un nouveau code_dossier et mettre la version à l'état 1
+        
+        * Modification: Lors d'une modification il faudra regarder si le code_dossier est deja existant, si oui on modifie tout en gardant
+                        le code_ddosier et on incrémenta juste la version de 1, sinon on repasse à la création si le code_dossier n'est pas
+                        trouvé.
 
-        // Si le code_dossier n'est pas dans la session, c'est une nouvelle entité
-        if (is_null($code_dossier) || $code_dossier == '') {
-            $code_dossier = Str::random(10);
-            $Version = 1;
-            // Stockez le code_dossier dans la session pour pouvoir le réutiliser dans les autres requêtes
-            session(['code_dossier' => $code_dossier]);
-        } else {
-            // Sinon, nous incrémentons la version de l'entité existante
-            $Version = $this->getVersion($code_dossier) + 1;
+        * Suppression: Si on souhaite supprimer, il faudra sélectionner un code_dossier puis de supprimer soit une version en particulier, soit
+                       toutes les versions.
+    */  
+    private $code_dossier;
+    private $Version;
+
+    private function prepareData(Request $request) {
+        $code_dossier = $request->input('Code_dossier');
+        $Version = 1;
+    
+        if(empty($code_dossier)) {
+            throw new \Exception('Veuillez remplir le champ Code_dossier.');
         }
-
+    
+        //On vérifie si le code_dossier existe, si oui on incrémente la version de 1
+        if(G_dashboard::where('Code_dossier', $code_dossier)->exists()) {
+            $Version = G_dashboard::where('Code_dossier', $code_dossier)->max('Version') + 1;
+        }
+    
         return [$code_dossier, $Version];
     }
-
-// Ajoutez une nouvelle méthode pour gérer les versions:
-public function getVersion($code_dossier)
-{
-    // Recherche la version la plus récente pour ce code_dossier
-    $latest = G_dashboard::where('Code_dossier', $code_dossier)->orderBy('Version', 'desc')->first();
-
-    // Si aucune version n'est trouvée, retourne 1, sinon retourne la dernière version incrémentée de 1
-    return $latest ? $latest->Version + 1 : 1;
-}
+    
+    
 
 
     public function generateDASHBOARD(Request $request)
     {
-        list($code_dossier, $Version) = $this->prepareData($request);
+        try {
+            list($code_dossier, $Version) = $this->prepareData($request);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+        //dd($code_dossier, $Version);
 
         list($resultMAT, $resultEMB, $resultMOD, $resultFF, $resultTOTAL, $resultMC, $resultPV) = [
             $request->input('resultMAT'),
@@ -96,6 +101,7 @@ public function getVersion($code_dossier)
             
         ]);
 
+
         if ($data) {
             return response()->json($data);
         } else {
@@ -105,7 +111,14 @@ public function getVersion($code_dossier)
 
     public function generateMAT(Request $request)
     {
-        list($code_dossier, $Version) = $this->prepareData($request);
+        try {
+            list($code_dossier, $Version) = $this->prepareData($request);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+        //dd($code_dossier, $Version);
+        
+
         list($codeArticle, $designation, $prixKgMAT, $quantiteMAT, $freinteMAT, $poidsMatMAT, $coutMatiereMAT, $freinteGlobaleMAT) = [
             $request->input('codeArticle'),
             $request->input('designation'),
@@ -160,11 +173,19 @@ public function getVersion($code_dossier)
         } else {
             return response()->json(['error' => "J'arrive pas à l'envoyer"]);
         }
+
+        
     }
 
     public function generateEMB(Request $request)
     {
-        list($code_dossier, $Version) = $this->prepareData($request);
+        try {
+            list($code_dossier, $Version) = $this->prepareData($request);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+        //dd($code_dossier, $Version);
+
         list($codeArticle, $designation, $prixKgEMB, $quantiteEMB, $freinteEMB, $poidsMatEMB, $coutMatiereEMB, $freinteGlobaleEMB) = [
             $request->input('codeArticle'),
             $request->input('designation'),
@@ -223,7 +244,12 @@ public function getVersion($code_dossier)
 
     public function generateMOD(Request $request)
     {
-        list($code_dossier, $Version) = $this->prepareData($request);
+        try {
+            list($code_dossier, $Version) = $this->prepareData($request);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+        //dd($code_dossier, $Version);
 
         list($Metier, $Nb_etp, $Cadence_horaire, $Taux_horaire) = [
             $request->input('Metier'),

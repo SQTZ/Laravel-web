@@ -180,6 +180,7 @@ $('#btnPush').click(function(event) {
         Nb_etp: $('#Nb_etp').val(),
         Cadence_horaire: $('#Cadence_horaire').val(),
         Taux_horaire: $('#Taux_horaire').val(),
+        Code_dossier: $('#Code_dossier').val(),
     },
 
         success: function(response) {

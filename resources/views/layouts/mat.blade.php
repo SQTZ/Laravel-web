@@ -251,6 +251,7 @@ $('#btnPush').click(function(event) {
         poidsMatMAT: $('#poidsMatMAT').val(),
         coutMatiereMAT: $('#coutMatiereMAT').val(),
         freinteGlobaleMAT: $('#freinteGlobaleMAT').val(),
+        Code_dossier: $('#Code_dossier').val(),
     },
 
         success: function(response) {
