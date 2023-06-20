@@ -20,8 +20,9 @@ Assurez-vous que vous avez ces outils-ci:
 - [Node v.20.0.x](https://nodejs.org/fr)
 - [PHP](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org/download/)
+- [Wamp](https://www.clubic.com/telecharger-fiche27009-wampserver.html)
 
-Une fois installé, vous avez juste à installer notre [Pre-release](https://github.com/SQTZ/Laravel-web/releases/tag/pre-release).
+Une fois installé, vous avez juste à installer notre [Pre-release](https://github.com/SQTZ/Laravel-web/releases/tag/pre-release), ensuite allez dans ``.env`` situé à la racine de l'application et renseignez vos informations de votre base de données [Nom de base, Identifiant, Mot de passe (falcutatif si vous êtes en local)].
 
 
 # Installation
@@ -30,3 +31,7 @@ Vous aurez juste à ouvrir 3 Terminal et suivre ces étapes:
 **Terminal A:** ``php artisan serve``
 **Terminal B:** ``npm run dev``
 **Terminal C:** ``php artisan migrate``
+
+
+**Vous venez d'installer, configurer et de lancer Appliweb !**
+
