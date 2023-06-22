@@ -180,7 +180,7 @@
                             alert('Données envoyées');
 
                             //On redirige vers la page dashboard
-                            //window.location.href = "/dashboard";
+                            window.location.href = "/dashboard";
 
 
                         } else {

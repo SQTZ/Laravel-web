@@ -12,12 +12,14 @@ use App\Models\result_mod;
 
 class CreateController extends Controller
 {
+    //J'affiche la page de l'éditeur
     public function create()
 {
     return view('editor');
 }
 
 
+//Je récupère les donnés de la base de donnés en fonction de son code_dossier et de sa version
 public function show($Code_dossier, $version)
 {
     $dossier = G_dashboard::where('Code_dossier', $Code_dossier)
@@ -40,6 +42,7 @@ public function show($Code_dossier, $version)
 }
 
 
+//J'effectue mes requêtes pour récupérer les valeurs écrites dans les variables
     public function fetchData(Request $request)
     {
         $code_article = $request->input('Reference');

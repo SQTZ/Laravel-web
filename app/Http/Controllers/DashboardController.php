@@ -11,6 +11,7 @@ use App\Models\result_mod;
 
 class DashboardController extends Controller
 {
+    //J'affiche le contenu dans la page dashboard tou en affichant la dernière version de chaque code_dossier + système de pagination
     public function dashboard()
 {
     // Sous-requête pour obtenir l'ID du dernier article pour chaque code_dossier
@@ -28,6 +29,7 @@ class DashboardController extends Controller
 
 
 
+//J'affiche la page de visualisation avec un graphique, l'historique et les versions disponibles pour ce code_dossier
 public function show(UserChart $chart, $Code_dossier)
 {
     $versions = G_dashboard::where('Code_dossier', $Code_dossier)->get();

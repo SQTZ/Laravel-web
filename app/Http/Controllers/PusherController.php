@@ -13,20 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class PusherController extends Controller
 {
-    //TODO: Trouver un système qui va permettre de créer/modifier
-    /*
-        * Création: celle-ci devra générer un nouveau code_dossier et mettre la version à l'état 1
-        
-        * Modification: Lors d'une modification il faudra regarder si le code_dossier est deja existant, si oui on modifie tout en gardant
-                        le code_ddosier et on incrémenta juste la version de 1, sinon on repasse à la création si le code_dossier n'est pas
-                        trouvé.
-
-        * Suppression: Si on souhaite supprimer, il faudra sélectionner un code_dossier puis de supprimer soit une version en particulier, soit
-                       toutes les versions.
-    */  
-    private $code_dossier;
-    private $Version;
-
+    //Je prépare mon système de code_dossier et si il existe on incrémente de 1 la version
     private function prepareData(Request $request) {
         $code_dossier = $request->input('Code_dossier');
         $Version = 1;
@@ -45,7 +32,7 @@ class PusherController extends Controller
     
     
 
-
+//Pour les 4 requêtes suivantes elle permettent de récuperer les données en ajax, puis les envoyer dans la base de données
     public function generateDASHBOARD(Request $request)
     {
         try {

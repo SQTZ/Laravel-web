@@ -7,6 +7,7 @@ use App\Models\G_variable;
 
 class VariableController extends Controller
 {
+    //J'affiche la page des variables
     public function index()
     {
         $datalist = G_variable::all();
@@ -15,6 +16,7 @@ class VariableController extends Controller
     }
 
 
+    //J'effectue une requête pour récupérer les données ajax pour les envoyer dans la base de données
     public function deploy(Request $request)
 {
     //Je récupère les données du formulaire
