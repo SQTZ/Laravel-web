@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->text('Code_dossier');
             $table->integer('Version');
+            $table->integer('Ligne_version');
             $table->integer('Code_article');
             $table->text('Designation');
             $table->decimal('Prix_kg', 8, 2);

@@ -11,27 +11,29 @@
 
     @if(isset($dossierMOD))
     <div id="formContainerMOD">
+        @foreach($dossierMOD as $mod)
         <form id="calcul-form" class="ml-4 gap-4 formRowMOD flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="Metier" class="text-white">Métier</label>
-                <input type="text" id="Metier" class="w-24 h-8" value="{{ $dossierMOD->Metier }}">
+                <input type="text" id="Metier" class="Metier w-24 h-8" value="{{ $mod->Metier }}">
             </div>
             <div class="flex flex-col">
                 <label for="nbETP" class="text-white">Nb ETP</label>
-                <input type="text" id="Nb_etp" class="w-24 h-8" value="{{ $dossierMOD->Nb_etp }}"/>
+                <input type="text" id="Nb_etp" class="Nb_etp w-24 h-8" value="{{ $mod->Nb_etp }}"/>
             </div>
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
-                <input type="text" id="Cadence_horaire" class="w-24 h-8" value="{{ $dossierMOD->Cadence_horaire }}"/>
+                <input type="text" id="Cadence_horaire" class="Cadence_horaire w-24 h-8" value="{{ $mod->Cadence_horaire }}"/>
             </div>
 
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Taux Horaire</label>
-                <input type="text" id="Taux_horaire" class="w-24 h-8 Taux_horaire" value="{{ $dossierMOD->Taux_horaire }}" readonly/>
+                <input type="text" id="Taux_horaire" class="Taux_horaire w-24 h-8" value="{{ $mod->Taux_horaire }}" readonly/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
+        @endforeach
     </div>
 
     @else
@@ -39,20 +41,20 @@
         <form id="calcul-form" class="ml-4 gap-4 formRowMOD flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="Metier" class="text-white">Métier</label>
-                <input type="text" id="Metier" class="w-24 h-8">
+                <input type="text" id="Metier" class="Metier w-24 h-8">
             </div>
             <div class="flex flex-col">
                 <label for="nbETP" class="text-white">Nb ETP</label>
-                <input type="text" id="Nb_etp" class="w-24 h-8"/>
+                <input type="text" id="Nb_etp" class="Nb_etp w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Cadence horaire</label>
-                <input type="text" id="Cadence_horaire" class="w-24 h-8"/>
+                <input type="text" id="Cadence_horaire" class="Cadence_horaire w-24 h-8"/>
             </div>
 
             <div class="flex flex-col">
                 <label for="CadenceHoraire" class="text-white">Taux Horaire</label>
-                <input type="text" id="Taux_horaire" class="w-24 h-8 Taux_horaire" readonly/>
+                <input type="text" id="Taux_horaire" class="Taux_horaire w-24 h-8" readonly/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMOD(this)"><i class="fa-solid fa-trash"></i></button>
@@ -166,28 +168,40 @@ function GetMOD() {
 $('#btnPush').click(function(event) {
     event.preventDefault();
 
-    console.log($('#Metier').val());
-    console.log($('#Nb_etp').val());
-    console.log($('#Cadence_horaire').val());
-    console.log($('#Taux_horaire').val());
+    // créer un tableau pour stocker les données de tous les formulaires
+    var dataArr = [];
+
+    // pour chaque formulaire...
+    $('.formRowMOD').each(function() {
+        // ...créer un objet pour stocker les données de ce formulaire
+        var formData = {
+            Metier: $(this).find('.Metier').val(),
+            Nb_etp: $(this).find('.Nb_etp').val(),
+            Cadence_horaire: $(this).find('.Cadence_horaire').val(),
+            Taux_horaire: $(this).find('.Taux_horaire').val(),
+            Code_dossier: $('#Code_dossier').val(),
+        };
+
+        // ajouter cet objet au tableau
+        dataArr.push(formData);
+    });
+
+    // imprimer le tableau pour le débogage
+    console.log(dataArr);
 
     $.ajax({
-        url: '/fetch-moddata',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-        Metier: $('#Metier').val(),
-        Nb_etp: $('#Nb_etp').val(),
-        Cadence_horaire: $('#Cadence_horaire').val(),
-        Taux_horaire: $('#Taux_horaire').val(),
+    url: '/fetch-moddata',
+    type: 'POST',
+    dataType: 'json',
+    data: {
         Code_dossier: $('#Code_dossier').val(),
+        modEntries: dataArr, // envoyer le tableau complet
     },
 
         success: function(response) {
             if (response) {
                 console.log(response);
                 alert('Données envoyées');
-
             } else {
                 alert('Erreur');
             }

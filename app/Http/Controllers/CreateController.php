@@ -26,15 +26,15 @@ public function show($Code_dossier, $version)
 
     $dossierMAT = result_mat::where('Code_dossier', $Code_dossier)
                             ->where('Version', $version)
-                            ->first();
+                            ->get();
 
     $dossierEMB = result_emb::where('Code_dossier', $Code_dossier)
                             ->where('Version', $version)
-                            ->first();
+                            ->get();
 
     $dossierMOD = result_mod::where('Code_dossier', $Code_dossier)
                             ->where('Version', $version)
-                            ->first();                      
+                            ->get();                      
     
     return view('editor', compact('dossier', 'dossierEMB', 'dossierMAT', 'dossierMOD'));
 }

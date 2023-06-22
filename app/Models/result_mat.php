@@ -12,6 +12,7 @@ class result_mat extends Model
     protected $fillable = [
         'Code_dossier',
         'Version',
+        'Ligne_version',
         'Code_article',
         'Designation',
         'Prix_kg',

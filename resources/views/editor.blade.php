@@ -55,7 +55,7 @@
         @else
         <tbody>
             <tr id="resultTD">
-                <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" name="Code_dossier" id="Code_dossier"></td>
+                <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" name="Code_dossier[]" id="Code_dossier"></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMAT" oninput="CalculTotal()" readonly></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultEMB" oninput="CalculTotal()" readonly></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOD" oninput="CalculTotal()" readonly></td>

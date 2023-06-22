@@ -12,42 +12,44 @@
 
     @if(isset($dossierMAT))
     <div id="formContainerMAT">
+    @foreach($dossierMAT as $mat)
         <form id="calcul-form" class="ml-4 gap-4 formRowMAT flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
-                <input type="text" id="codeArticle" class="w-24 h-8" value="{{ $dossierMAT->Code_article }}">
+                <input type="text" id="codeArticle" class="codeArticle w-24 h-8" value="{{ $mat->Code_article }}">
             </div>
             <div class="flex flex-col">
                 <label for="designation" class="text-white">Désignation</label>
-                <input type="text" id="designation" class="h-8" value="{{ $dossierMAT->Designation }}" readonly/>
+                <input type="text" id="designation" class="designation h-8" value="{{ $mat->Designation }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgMAT" class="w-24 h-8" value="{{ $dossierMAT->Prix_kg }}" readonly/>
+                <input type="text" id="prixKgMAT" class="prixKgMAT w-24 h-8" value="{{ $mat->Prix_kg }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteMAT" class="w-24 h-8" value="{{ $dossierMAT->Quantite }}"/>
+                <input type="text" id="quantiteMAT" class="quantiteMAT w-24 h-8" value="{{ $mat->Quantite }}"/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteMAT" class="w-24 h-8" value="{{ $dossierMAT->Freinte }}"/>
+                <input type="text" id="freinteMAT" class="freinteMAT w-24 h-8" value="{{ $mat->Freinte }}"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
-                <input type="text" id="poidsMatMAT" class="w-24 h-8" value="{{ $dossierMAT->Poids_mat }}" readonly/>
+                <input type="text" id="poidsMatMAT" class="poidsMatMAT w-24 h-8" value="{{ $mat->Poids_mat }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereMAT" class="w-24 h-8" value="{{ $dossierMAT->Cout_matiere }}" readonly/>
+                <input type="text" id="coutMatiereMAT" class="coutMatiereMAT w-24 h-8" value="{{ $mat->Cout_matiere }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinteGlobale" class="text-white">Freinte globale</label>
-                <input type="text" id="freinteGlobaleMAT" class="h-8" value="{{ $dossierMAT->Freinte_globale }}"/>
+                <input type="text" id="freinteGlobaleMAT" class="freinteGlobaleMAT h-8" value="{{ $mat->Freinte_globale }}"/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
+        @endforeach
     </div>
 
     @else
@@ -55,35 +57,35 @@
         <form id="calcul-form" class="ml-4 gap-4 formRowMAT flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
-                <input type="text" id="codeArticle" class="w-24 h-8">
+                <input type="text" id="codeArticle" class="codeArticle w-24 h-8">
             </div>
             <div class="flex flex-col">
                 <label for="designation" class="text-white">Désignation</label>
-                <input type="text" id="designation" class="h-8" readonly/>
+                <input type="text" id="designation" class="designation h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgMAT" class="w-24 h-8" readonly/>
+                <input type="text" id="prixKgMAT" class="prixKgMAT w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteMAT" class="w-24 h-8"/>
+                <input type="text" id="quantiteMAT" class="quantiteMAT w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteMAT" class="w-24 h-8"/>
+                <input type="text" id="freinteMAT" class="freinteMAT w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
-                <input type="text" id="poidsMatMAT" class="w-24 h-8" readonly/>
+                <input type="text" id="poidsMatMAT" class="poidsMatMAT w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereMAT" class="w-24 h-8" readonly/>
+                <input type="text" id="coutMatiereMAT" class="coutMatiereMAT w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinteGlobale" class="text-white">Freinte globale</label>
-                <input type="text" id="freinteGlobaleMAT" class="h-8"/>
+                <input type="text" id="freinteGlobaleMAT" class="freinteGlobaleMAT h-8"/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowMAT(this)"><i class="fa-solid fa-trash"></i></button>
@@ -229,42 +231,51 @@ function CalcReleaseMAT(formRow) {
 $('#btnPush').click(function(event) {
     event.preventDefault();
 
-    console.log($('#codeArticle').val());
-    console.log($('#designation').val());
-    console.log($('#prixKgMAT').val());
-    console.log($('#quantiteMAT').val());
-    console.log($('#freinteMAT').val());
-    console.log($('#poidsMatMAT').val());
-    console.log($('#coutMatiereMAT').val());
-    console.log($('#freinteGlobaleMAT').val());
+    // créer un tableau pour stocker les données de tous les formulaires
+    var dataArr = [];
+
+    // pour chaque formulaire...
+    $('.formRowMAT').each(function() {
+        // ...créer un objet pour stocker les données de ce formulaire
+        var formData = {
+            codeArticle: $(this).find('.codeArticle').val(),
+            designation: $(this).find('.designation').val(),
+            prixKgMAT: $(this).find('.prixKgMAT').val(),
+            quantiteMAT: $(this).find('.quantiteMAT').val(),
+            freinteMAT: $(this).find('.freinteMAT').val(),
+            poidsMatMAT: $(this).find('.poidsMatMAT').val(),
+            coutMatiereMAT: $(this).find('.coutMatiereMAT').val(),
+            freinteGlobaleMAT: $(this).find('.freinteGlobaleMAT').val(),
+            Code_dossier: $('#Code_dossier').val(),
+        };
+
+        // ajouter cet objet au tableau
+        dataArr.push(formData);
+    });
+
+    // imprimer le tableau pour le débogage
+    console.log(dataArr);
 
     $.ajax({
-        url: '/fetch-matdata',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-        codeArticle: $('#codeArticle').val(),
-        designation: $('#designation').val(),
-        prixKgMAT: $('#prixKgMAT').val(),
-        quantiteMAT: $('#quantiteMAT').val(),
-        freinteMAT: $('#freinteMAT').val(),
-        poidsMatMAT: $('#poidsMatMAT').val(),
-        coutMatiereMAT: $('#coutMatiereMAT').val(),
-        freinteGlobaleMAT: $('#freinteGlobaleMAT').val(),
+    url: '/fetch-matdata',
+    type: 'POST',
+    dataType: 'json',
+    data: {
         Code_dossier: $('#Code_dossier').val(),
+        matEntries: dataArr, // envoyer le tableau complet
     },
 
         success: function(response) {
             if (response) {
                 console.log(response);
                 alert('Données envoyées');
-
             } else {
                 alert('Erreur');
             }
         }
     });
 });
+
 
 });
 

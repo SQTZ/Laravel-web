@@ -12,6 +12,7 @@ class result_mod extends Model
     protected $fillable = [
         'Code_dossier',
         'Version',
+        'Ligne_version',
         'Metier',
         'Nb_etp',  
         'Cadence_horaire',

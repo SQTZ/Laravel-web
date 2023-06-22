@@ -8,42 +8,44 @@
 
     @if(isset($dossierEMB))
     <div id="formContainerEMB">
+        @foreach($dossierEMB as $emb)
         <form id="calcul-form" class="ml-4 gap-4 formRowEMB flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
-                <input type="text" id="codeArticle" class="w-24 h-8" value="{{ $dossierEMB->Code_article }}">
+                <input type="text" id="codeArticle" class="codeArticle w-24 h-8" value="{{ $emb->Code_article }}">
             </div>
             <div class="flex flex-col">
                 <label for="designation" class="text-white">Désignation</label>
-                <input type="text" id="designation" class="h-8" value="{{ $dossierEMB->Designation }}" readonly/>
+                <input type="text" id="designation" class="designation h-8" value="{{ $emb->Designation }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgEMB" class="w-24 h-8" value="{{ $dossierEMB->Prix_kg }}" readonly/>
+                <input type="text" id="prixKgEMB" class="prixKgEMB w-24 h-8" value="{{ $emb->Prix_kg }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteEMB" class="w-24 h-8" value="{{ $dossierEMB->Quantite }}"/>
+                <input type="text" id="quantiteEMB" class="quantiteEMB w-24 h-8" value="{{ $emb->Quantite }}"/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteEMB" class="w-24 h-8" value="{{ $dossierEMB->Freinte }}"/>
+                <input type="text" id="freinteEMB" class="freinteEMB w-24 h-8" value="{{ $emb->Freinte }}"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
-                <input type="text" id="poidsMatEMB" class="w-24 h-8" value="{{ $dossierEMB->Poids_mat }}" readonly/>
+                <input type="text" id="poidsMatEMB" class="poidsMatEMB w-24 h-8" value="{{ $emb->Poids_mat }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereEMB" class="w-24 h-8" value="{{ $dossierEMB->Cout_matiere }}" readonly/>
+                <input type="text" id="coutMatiereEMB" class="coutMatiereEMB w-24 h-8" value="{{ $emb->Cout_matiere }}" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinteGlobale" class="text-white">Freinte globale</label>
-                <input type="text" id="freinteGlobaleEMB" class="h-8" value="{{ $dossierEMB->Freinte_globale }}"/>
+                <input type="text" id="freinteGlobaleEMB" class="freinteGlobaleEMB h-8" value="{{ $emb->Freinte_globale }}"/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowEMB(this)"><i class="fa-solid fa-trash"></i></button>
         </form>
+        @endforeach
     </div>
 
     @else
@@ -51,35 +53,35 @@
         <form id="calcul-form" class="ml-4 gap-4 formRowEMB flex" data-rowid="1">
             <div class="flex flex-col">
                 <label for="codeArticle" class="text-white">Code article</label>
-                <input type="text" id="codeArticle" class="w-24 h-8">
+                <input type="text" id="codeArticle" class="codeArticle w-24 h-8">
             </div>
             <div class="flex flex-col">
                 <label for="designation" class="text-white">Désignation</label>
-                <input type="text" id="designation" class="h-8" readonly/>
+                <input type="text" id="designation" class="designation h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgEMB" class="w-24 h-8" readonly/>
+                <input type="text" id="prixKgEMB" class="prixKgEMB w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteEMB" class="w-24 h-8"/>
+                <input type="text" id="quantiteEMB" class="quantiteEMB w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteEMB" class="w-24 h-8"/>
+                <input type="text" id="freinteEMB" class="freinteEMB w-24 h-8"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
-                <input type="text" id="poidsMatEMB" class="w-24 h-8" readonly/>
+                <input type="text" id="poidsMatEMB" class="poidsMatEMB w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereEMB" class="w-24 h-8" readonly/>
+                <input type="text" id="coutMatiereEMB" class="coutMatiereEMB w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinteGlobale" class="text-white">Freinte globale</label>
-                <input type="text" id="freinteGlobaleEMB" class="h-8"/>
+                <input type="text" id="freinteGlobaleEMB" class="freinteGlobaleEMB h-8"/>
             </div>
 
             <button type="button" id="btnSupprimerLigne" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded" onclick="removeRowEMB(this)"><i class="fa-solid fa-trash"></i></button>
@@ -222,36 +224,44 @@ function CalcReleaseEMB(formRow) {
 $('#btnPush').click(function(event) {
     event.preventDefault();
 
-    console.log($('#codeArticle').val());
-    console.log($('#designation').val());
-    console.log($('#prixKgEMB').val());
-    console.log($('#quantiteEMB').val());
-    console.log($('#freinteEMB').val());
-    console.log($('#poidsMatEMB').val());
-    console.log($('#coutMatiereEMB').val());
-    console.log($('#freinteGlobaleEMB').val());
+    // créer un tableau pour stocker les données de tous les formulaires
+    var dataArr = [];
+
+    // pour chaque formulaire...
+    $('.formRowEMB').each(function() {
+        // ...créer un objet pour stocker les données de ce formulaire
+        var formData = {
+            codeArticle: $(this).find('.codeArticle').val(),
+            designation: $(this).find('.designation').val(),
+            prixKgEMB: $(this).find('.prixKgEMB').val(),
+            quantiteEMB: $(this).find('.quantiteEMB').val(),
+            freinteEMB: $(this).find('.freinteEMB').val(),
+            poidsMatEMB: $(this).find('.poidsMatEMB').val(),
+            coutMatiereEMB: $(this).find('.coutMatiereEMB').val(),
+            freinteGlobaleEMB: $(this).find('.freinteGlobaleEMB').val(),
+            Code_dossier: $('#Code_dossier').val(),
+        };
+
+        // ajouter cet objet au tableau
+        dataArr.push(formData);
+    });
+
+    // imprimer le tableau pour le débogage
+    console.log(dataArr);
 
     $.ajax({
-        url: '/fetch-embdata',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-        codeArticle: $('#codeArticle').val(),
-        designation: $('#designation').val(),
-        prixKgEMB: $('#prixKgEMB').val(),
-        quantiteEMB: $('#quantiteEMB').val(),
-        freinteEMB: $('#freinteEMB').val(),
-        poidsMatEMB: $('#poidsMatEMB').val(),
-        coutMatiereEMB: $('#coutMatiereEMB').val(),
-        freinteGlobaleEMB: $('#freinteGlobaleEMB').val(),
+    url: '/fetch-embdata',
+    type: 'POST',
+    dataType: 'json',
+    data: {
         Code_dossier: $('#Code_dossier').val(),
+        embEntries: dataArr, // envoyer le tableau complet
     },
 
         success: function(response) {
             if (response) {
                 console.log(response);
                 alert('Données envoyées');
-
             } else {
                 alert('Erreur');
             }

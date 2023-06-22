@@ -109,182 +109,132 @@ class PusherController extends Controller
         }
     }
 
-    public function generateMAT(Request $request)
-    {
+    public function generateMAT(Request $request) {
+    $matEntries = $request->input('matEntries');
+    $responseData = [];
+
+    if(!is_array($matEntries)) {
+        return response()->json(['error' => 'matEntries doit être un tableau.']);
+    }
+
+    foreach($matEntries as $index => $matEntry) {
         try {
             list($code_dossier, $Version) = $this->prepareData($request);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
-        //dd($code_dossier, $Version);
-        
 
-        list($codeArticle, $designation, $prixKgMAT, $quantiteMAT, $freinteMAT, $poidsMatMAT, $coutMatiereMAT, $freinteGlobaleMAT) = [
-            $request->input('codeArticle'),
-            $request->input('designation'),
-            $request->input('prixKgMAT'),
-            $request->input('quantiteMAT'),
-            $request->input('freinteMAT'),
-            $request->input('poidsMatMAT'),
-            $request->input('coutMatiereMAT'),
-            $request->input('freinteGlobaleMAT')
-        ];
+        $ligneVersion = $index;
 
-        if (is_null($codeArticle) || $codeArticle == '') {
-            dd('codeArticle is empty');
-        }
-        if (is_null($designation) || $designation == '') {
-            dd('designation is empty');
-        }
-        if (is_null($prixKgMAT) || $prixKgMAT == '') {
-            dd('prixKgMAT is empty');
-        }
-        if (is_null($quantiteMAT) || $quantiteMAT == '') {
-            dd('quantiteMAT is empty');
-        }
-        if (is_null($freinteMAT) || $freinteMAT == '') {
-            dd('freinteMAT is empty');
-        }
-        if (is_null($poidsMatMAT) || $poidsMatMAT == '') {
-            dd('poidsMatMAT is empty');
-        }
-        if (is_null($coutMatiereMAT) || $coutMatiereMAT == '') {
-            dd('coutMatiereMAT is empty');
-        }
-        if (is_null($freinteGlobaleMAT) || $freinteGlobaleMAT == '') {
-            dd('freinteGlobaleMAT is empty');
-        }
+        $codeArticle = $matEntry['codeArticle'];
+        $designation = $matEntry['designation'];
+        $prixKgMAT = $matEntry['prixKgMAT'];
+        $quantiteMAT = $matEntry['quantiteMAT'];
+        $freinteMAT = $matEntry['freinteMAT'];
+        $poidsMatMAT = $matEntry['poidsMatMAT'];
+        $coutMatiereMAT = $matEntry['coutMatiereMAT'];
+        $freinteGlobaleMAT = $matEntry['freinteGlobaleMAT'];
 
         $data = result_mat::updateOrCreate(
-            ['Code_dossier' => $code_dossier, 'Version' => $Version],
+            ['Code_dossier' => $code_dossier, 'Version' => $Version, 'Ligne_version' => $ligneVersion],
             [
-            'Code_article' => $codeArticle,
-            'Designation' => $designation,
-            'Prix_kg' => $prixKgMAT,
-            'Quantite' => $quantiteMAT,
-            'Freinte' => $freinteMAT,
-            'Poids_mat' => $poidsMatMAT,
-            'Cout_matiere' => $coutMatiereMAT,
-            'Freinte_globale' => $freinteGlobaleMAT,
-        ]);
-
-        if ($data) {
-            return response()->json($data);
-        } else {
-            return response()->json(['error' => "J'arrive pas à l'envoyer"]);
-        }
-
-        
+                'Code_article' => $codeArticle,
+                'Designation' => $designation,
+                'Prix_kg' => $prixKgMAT,
+                'Quantite' => $quantiteMAT,
+                'Freinte' => $freinteMAT,
+                'Poids_mat' => $poidsMatMAT,
+                'Cout_matiere' => $coutMatiereMAT,
+                'Freinte_globale' => $freinteGlobaleMAT,
+            ]);
+            
+        $responseData[] = $data;
     }
 
-    public function generateEMB(Request $request)
-    {
+    return response()->json($responseData);
+}
+
+
+//FIXME: Reprendre le template de generateMAT et l'appliquer pour EMB et MOD
+public function generateEMB(Request $request) {
+    $embEntries = $request->input('embEntries');
+    $responseData = [];
+
+    if(!is_array($embEntries)) {
+        return response()->json(['error' => 'matEntries doit être un tableau.']);
+    }
+
+    foreach($embEntries as $index => $embEntry) {
         try {
             list($code_dossier, $Version) = $this->prepareData($request);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
-        //dd($code_dossier, $Version);
 
-        list($codeArticle, $designation, $prixKgEMB, $quantiteEMB, $freinteEMB, $poidsMatEMB, $coutMatiereEMB, $freinteGlobaleEMB) = [
-            $request->input('codeArticle'),
-            $request->input('designation'),
-            $request->input('prixKgEMB'),
-            $request->input('quantiteEMB'),
-            $request->input('freinteEMB'),
-            $request->input('poidsMatEMB'),
-            $request->input('coutMatiereEMB'),
-            $request->input('freinteGlobaleEMB')
-        ];
+        $ligneVersion = $index;
 
-        if (is_null($codeArticle) || $codeArticle == '') {
-            dd('codeArticle is empty');
-        }
-        if (is_null($designation) || $designation == '') {
-            dd('designation is empty');
-        }
-        if (is_null($prixKgEMB) || $prixKgEMB == '') {
-            dd('prixKgEMB is empty');
-        }
-        if (is_null($quantiteEMB) || $quantiteEMB == '') {
-            dd('quantiteEMB is empty');
-        }
-        if (is_null($freinteEMB) || $freinteEMB == '') {
-            dd('freinteEMB is empty');
-        }
-        if (is_null($poidsMatEMB) || $poidsMatEMB == '') {
-            dd('poidsMatEMB is empty');
-        }
-        if (is_null($coutMatiereEMB) || $coutMatiereEMB == '') {
-            dd('coutMatiereEMB is empty');
-        }
-        if (is_null($freinteGlobaleEMB) || $freinteGlobaleEMB == '') {
-            dd('freinteGlobaleEMB is empty');
-        }
+        $codeArticle = $embEntry['codeArticle'];
+        $designation = $embEntry['designation'];
+        $prixKgEMB = $embEntry['prixKgEMB'];
+        $quantiteEMB = $embEntry['quantiteEMB'];
+        $freinteEMB = $embEntry['freinteEMB'];
+        $poidsMatEMB = $embEntry['poidsMatEMB'];
+        $coutMatiereEMB = $embEntry['coutMatiereEMB'];
+        $freinteGlobaleEMB = $embEntry['freinteGlobaleEMB'];
 
         $data = result_emb::updateOrCreate(
-            ['Code_dossier' => $code_dossier, 'Version' => $Version],
+            ['Code_dossier' => $code_dossier, 'Version' => $Version, 'Ligne_version' => $ligneVersion],
             [
-            'Code_article' => $codeArticle,
-            'Designation' => $designation,
-            'Prix_kg' => $prixKgEMB,
-            'Quantite' => $quantiteEMB,
-            'Freinte' => $freinteEMB,
-            'Poids_mat' => $poidsMatEMB,
-            'Cout_matiere' => $coutMatiereEMB,
-            'Freinte_globale' => $freinteGlobaleEMB,
-        ]);
-
-        if ($data) {
-            return response()->json($data);
-        } else {
-            return response()->json(['error' => "J'arrive pas à l'envoyer"]);
-        }
+                'Code_article' => $codeArticle,
+                'Designation' => $designation,
+                'Prix_kg' => $prixKgEMB,
+                'Quantite' => $quantiteEMB,
+                'Freinte' => $freinteEMB,
+                'Poids_mat' => $poidsMatEMB,
+                'Cout_matiere' => $coutMatiereEMB,
+                'Freinte_globale' => $freinteGlobaleEMB,
+            ]);
+            
+        $responseData[] = $data;
     }
 
-    public function generateMOD(Request $request)
-    {
+    return response()->json($responseData);
+}
+
+public function generateMOD(Request $request) {
+    $modEntries = $request->input('modEntries');
+    $responseData = [];
+
+    if(!is_array($modEntries)) {
+        return response()->json(['error' => 'matEntries doit être un tableau.']);
+    }
+
+    foreach($modEntries as $index => $modEntry) {
         try {
             list($code_dossier, $Version) = $this->prepareData($request);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
-        //dd($code_dossier, $Version);
 
-        list($Metier, $Nb_etp, $Cadence_horaire, $Taux_horaire) = [
-            $request->input('Metier'),
-            $request->input('Nb_etp'),
-            $request->input('Cadence_horaire'),
-            $request->input('Taux_horaire'),
-        ];
+        $ligneVersion = $index;
 
-        if (is_null($Metier) || $Metier == '') {
-            dd('Metier is empty');
-        }
-        if (is_null($Nb_etp) || $Nb_etp == '') {
-            dd('Nb_etp is empty');
-        }
-        if (is_null($Cadence_horaire) || $Cadence_horaire == '') {
-            dd('Cadence_horaire is empty');
-        }
-        if (is_null($Taux_horaire) || $Taux_horaire == '') {
-            dd('Taux_horaire is empty');
-        }
-
+        $Metier = $modEntry['Metier'];
+        $Nb_etp = $modEntry['Nb_etp'];
+        $Cadence_horaire = $modEntry['Cadence_horaire'];
+        $Taux_horaire = $modEntry['Taux_horaire'];
 
         $data = result_mod::updateOrCreate(
-            ['Code_dossier' => $code_dossier, 'Version' => $Version],
+            ['Code_dossier' => $code_dossier, 'Version' => $Version, 'Ligne_version' => $ligneVersion],
             [
-            'Metier' => $Metier,
-            'Nb_etp' => $Nb_etp,
-            'Cadence_horaire' => $Cadence_horaire,
-            'Taux_horaire' => $Taux_horaire,
-        ]);
-
-        if ($data) {
-            return response()->json($data);
-        } else {
-            return response()->json(['error' => "J'arrive pas à l'envoyer"]);
-        }
+                'Metier' => $Metier,
+                'Nb_etp' => $Nb_etp,
+                'Cadence_horaire' => $Cadence_horaire,
+                'Taux_horaire' => $Taux_horaire,
+            ]);
+            
+        $responseData[] = $data;
     }
+
+    return response()->json($responseData);
+}
 }

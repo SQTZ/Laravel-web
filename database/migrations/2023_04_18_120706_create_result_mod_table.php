@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->text('Code_dossier');
             $table->integer('Version');
+            $table->integer('Ligne_version');
             $table->text('Metier');
             $table->integer('Nb_etp');
             $table->decimal('Cadence_horaire', 8, 2);
