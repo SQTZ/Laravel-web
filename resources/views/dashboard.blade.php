@@ -5,6 +5,7 @@
 </div>
 
 
+
     <x-slot name="header">
     @vite('resources/css/app.css')
         <div class="flex justify-between items-center">

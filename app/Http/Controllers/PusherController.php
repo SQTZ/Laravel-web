@@ -142,13 +142,12 @@ class PusherController extends Controller
 }
 
 
-//FIXME: Reprendre le template de generateMAT et l'appliquer pour EMB et MOD
 public function generateEMB(Request $request) {
     $embEntries = $request->input('embEntries');
     $responseData = [];
 
     if(!is_array($embEntries)) {
-        return response()->json(['error' => 'matEntries doit être un tableau.']);
+        return response()->json(['error' => 'embEntries doit être un tableau.']);
     }
 
     foreach($embEntries as $index => $embEntry) {
@@ -193,7 +192,7 @@ public function generateMOD(Request $request) {
     $responseData = [];
 
     if(!is_array($modEntries)) {
-        return response()->json(['error' => 'matEntries doit être un tableau.']);
+        return response()->json(['error' => 'modEntries doit être un tableau.']);
     }
 
     foreach($modEntries as $index => $modEntry) {

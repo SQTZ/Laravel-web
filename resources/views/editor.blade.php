@@ -32,7 +32,7 @@
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOD" value="{{ $dossier->MOD }}" oninput="CalculTotal()" readonly></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultFF" value="{{ $dossier->FF }}" readonly></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" value="{{ $dossier->TOTAL }}" oninput="CalculFinal()" readonly></td>
-                <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" value="{{ $dossier->MC }}" onchange="CalculFinal()"></td>
+                <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" value="{{ $dossier->MC }}" oninput="CalculFinal()"></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" value="{{ $dossier->PV }}" readonly></td>
 
             </tr>
@@ -40,15 +40,15 @@
         </tbody>
 
         <div class="flex justify-center gap-24 items-center my-10">
-        <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl flex px-8 py-4 gap-10">
-        <div class="flex gap-4">
-                <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMAT()">Calculer MAT</button>
-                <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesEMB()">Calculer EMB</button>
-                <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMOD()">Calculer MOD</button>
-            </div>
+            <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl flex px-8 py-4 gap-10">
+                <div class="flex gap-4">
+                    <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMAT()">Calculer MAT</button>
+                    <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesEMB()">Calculer EMB</button>
+                    <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMOD()">Calculer MOD</button>
+                </div>
 
-            <button id="btnPush" class="border-2 border-yellow-500 text-yellow-500 px-4 py-2 rounded-lg hover:bg-yellow-500 hover:text-white duration-150">Modifier</button>
-        </div>
+                <button id="btnPush" class="border-2 border-yellow-500 text-yellow-500 px-4 py-2 rounded-lg hover:bg-yellow-500 hover:text-white duration-150">Modifier</button>
+            </div>
         </div>
 
 
@@ -61,21 +61,21 @@
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMOD" oninput="CalculTotal()" readonly></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultFF" readonly></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultTOTAL" oninput="CalculFinal()" readonly></td>
-                <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" onchange="CalculFinal()"></td>
+                <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultMC" oninput="CalculFinal()"></td>
                 <td class="border border-gray-300 p-2"><input type="text" class="w-24 h-8" id="resultPV" readonly></td>
                 <!--<td><input type="hidden" id="new_session"></td>-->
             </tr>
         </tbody>
         <div class="flex justify-center gap-24 items-center my-10">
-        <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl flex px-8 py-4 gap-10">
-            <div class="flex gap-4">
-                <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMAT()">Calculer MAT</button>
-                <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesEMB()">Calculer EMB</button>
-                <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMOD()">Calculer MOD</button>
-            </div>
+            <div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl flex px-8 py-4 gap-10">
+                <div class="flex gap-4">
+                    <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMAT()">Calculer MAT</button>
+                    <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesEMB()">Calculer EMB</button>
+                    <button type="button" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white duration-150 py-2 px-4 rounded-lg" onclick="updateValuesMOD()">Calculer MOD</button>
+                </div>
 
-            <button id="btnPush" class="border-2 border-green-500 text-green-500 px-4 py-2 rounded-lg hover:bg-green-500 hover:text-white duration-150">Créer</button>
-        </div>
+                <button id="btnPush" class="border-2 border-green-500 text-green-500 px-4 py-2 rounded-lg hover:bg-green-500 hover:text-white duration-150">Créer</button>
+            </div>
         </div>
         @endif
 
@@ -84,9 +84,9 @@
 
     <!--J'inclus mes layouts MAT, EMB, MOO et FF pour activer le mode calcul-->
     <div class="grid gap-8">
-    @include('layouts.mat')
-    @include('layouts.emb')
-    @include('layouts.moo')
+        @include('layouts.mat')
+        @include('layouts.emb')
+        @include('layouts.moo')
     </div>
 
 
@@ -105,15 +105,15 @@
 
         }
 
-        //Va calculer TOTAL et MC pour obtenir le résultat dans PV
         function CalculFinal() {
-            var resultTOTAL = parseInt(document.getElementById("resultTOTAL").value) || 0;
-            var resultMC = parseInt(document.getElementById("resultMC").value) || 0;
+            var resultTOTAL = parseFloat(document.getElementById("resultTOTAL").value) || 0;
+            var resultMC = parseFloat(document.getElementById("resultMC").value) || 0;
 
             var resultPV = (resultTOTAL + resultMC);
             console.log("Le calcul final est fait, le PV est " + resultPV); // Ajout de cette ligne
             document.getElementById("resultPV").value = resultPV;
         }
+
 
         $(document).ready(function() {
             GetFF();
