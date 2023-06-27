@@ -1,9 +1,10 @@
 <!--Module pour la catégorie EMB-->
 
-<div class="mb-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5">
+<div class="mb-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5 mx-10">
     <div class="flex gap-4 mb-4 items-center ml-4">
         <h2 class="text-xl text-white">Catégorie EMB</h2>
             <button type="button" id="btnAjouterLigneEMB" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"><i class="fa-solid fa-plus"></i></button>
+            <div id="progressQuantiteEMB" class="text-white"></div>
     </div>
 
     @if(isset($dossierEMB))
@@ -20,26 +21,26 @@
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgEMB" class="prixKgEMB w-24 h-8" value="{{ $emb->Prix_kg }}" readonly/>
+                <input type="text" id="prixKgEMB" class="prixKgEMB w-24 h-8" value="{{ $emb->Prix_kg }}" oninput="calculerCoutMatiereEMB()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteEMB" class="quantiteEMB w-24 h-8" value="{{ $emb->Quantite }}"/>
+                <input type="text" id="quantiteEMB" class="quantiteEMB w-24 h-8" value="{{ $emb->Quantite }}" oninput="calculerCoutMatiereEMB()"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="coutMatiere" class="text-white">Coût matière</label>
+                <input type="text" id="coutMatiereEMB" class="coutMatiereEMB w-24 h-8" value="{{ $emb->Cout_matiere }}" oninput="calculerFreinteEMB()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteEMB" class="freinteEMB w-24 h-8" value="{{ $emb->Freinte }}"/>
+                <input type="text" id="freinteEMB" class="freinteEMB w-24 h-8" value="{{ $emb->Freinte }}" oninput="calculerFreinteEMB()"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
                 <input type="text" id="poidsMatEMB" class="poidsMatEMB w-24 h-8" value="{{ $emb->Poids_mat }}" readonly/>
             </div>
             <div class="flex flex-col">
-                <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereEMB" class="coutMatiereEMB w-24 h-8" value="{{ $emb->Cout_matiere }}" readonly/>
-            </div>
-            <div class="flex flex-col">
-                <label for="freinteGlobale" class="text-white">Freinte globale</label>
+                <label for="freinteGlobale" class="text-white">Total</label>
                 <input type="text" id="freinteGlobaleEMB" class="freinteGlobaleEMB h-8" value="{{ $emb->Freinte_globale }}"/>
             </div>
 
@@ -61,26 +62,26 @@
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgEMB" class="prixKgEMB w-24 h-8" readonly/>
+                <input type="text" id="prixKgEMB" class="prixKgEMB w-24 h-8" oninput="calculerCoutMatiereEMB()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteEMB" class="quantiteEMB w-24 h-8"/>
+                <input type="text" id="quantiteEMB" class="quantiteEMB w-24 h-8" oninput="calculerCoutMatiereEMB()"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="coutMatiere" class="text-white">Coût matière</label>
+                <input type="text" id="coutMatiereEMB" class="coutMatiereEMB w-24 h-8" oninput="calculerFreinteEMB()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteEMB" class="freinteEMB w-24 h-8"/>
+                <input type="text" id="freinteEMB" class="freinteEMB w-24 h-8" oninput="calculerFreinteEMB()"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
                 <input type="text" id="poidsMatEMB" class="poidsMatEMB w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
-                <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereEMB" class="coutMatiereEMB w-24 h-8" readonly/>
-            </div>
-            <div class="flex flex-col">
-                <label for="freinteGlobale" class="text-white">Freinte globale</label>
+                <label for="freinteGlobale" class="text-white">Total</label>
                 <input type="text" id="freinteGlobaleEMB" class="freinteGlobaleEMB h-8"/>
             </div>
 
@@ -105,7 +106,7 @@
         if (formRowCount > 1) {
             formRow.remove();
         } else {
-            alert('Vous ne pouvez pas supprimer toutes les lignes !');
+            //alert('Vous ne pouvez pas supprimer toutes les lignes !');
         }
     }
 
@@ -196,6 +197,57 @@
     CalculTotal();
 }
 
+function calculerCoutMatiereEMB() {
+    var prixKgElements = document.getElementsByClassName('prixKgEMB');
+    var quantiteElements = document.getElementsByClassName('quantiteEMB');
+    var coutMatiereElements = document.getElementsByClassName('coutMatiereEMB');
+    var totalQuantite = 0;
+
+    for (var i = 0; i < prixKgElements.length; i++) {
+        var prixKg = parseFloat(prixKgElements[i].value);
+        var quantite = parseFloat(quantiteElements[i].value);
+
+        // Verify if adding the current quantity would exceed 1
+        if (totalQuantite + quantite > 1) {
+            alert("La somme des quantités ne peut pas dépasser 1");
+            quantiteElements[i].value = (1 - totalQuantite).toFixed(2); // set the value so that total becomes 1
+            quantite = 1 - totalQuantite; // update the quantity to be added
+        }
+
+        var coutMatiere = prixKg * quantite;
+        coutMatiereElements[i].value = coutMatiere.toFixed(2);
+
+        // Add the current quantity to the total
+        totalQuantite += quantite;
+    }
+
+    // Update the progress text
+    var progressText = document.getElementById('progressQuantiteEMB');
+    progressText.innerText = "Quantité: " + (totalQuantite * 100).toFixed(2) + "%";
+
+    // Check if the total quantity is 1
+    if (totalQuantite.toFixed(2) == 1.00) {
+        alert("La somme des quantités est égale à 1");
+    }
+}
+
+
+
+
+    function calculerFreinteEMB() {
+      var FreinteElements = document.getElementsByClassName('freinteEMB');
+      var coutMatiereElements = document.getElementsByClassName('coutMatiereEMB');
+      var freinteglobaleElements = document.getElementsByClassName('freinteGlobaleEMB');
+
+      for (var i = 0; i < FreinteElements.length; i++) {
+        var freinte = parseFloat(FreinteElements[i].value);
+        var coutMatiere = parseFloat(coutMatiereElements[i].value);
+        var freinteGlobale = freinte * coutMatiere;
+
+        freinteglobaleElements[i].value = freinteGlobale.toFixed(2);
+      }
+    }
+
 function CalcReleaseEMB(formRow) {
     var prixKgEMB = parseFloat(formRow.querySelector("#prixKgEMB").value);
     var quantiteEMB = parseFloat(formRow.querySelector("#quantiteEMB").value);
@@ -204,7 +256,7 @@ function CalcReleaseEMB(formRow) {
     var coutMatiereEMB = parseFloat(formRow.querySelector("#coutMatiereEMB").value);
     var freinteGlobaleEMB = parseFloat(formRow.querySelector("#freinteGlobaleEMB").value);
 
-    let result = (prixKgEMB * quantiteEMB) + (freinteEMB * poidsMatEMB) + (coutMatiereEMB * freinteGlobaleEMB);
+    let result = freinteGlobaleEMB;
 
     return result;
 }

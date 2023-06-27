@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5">
+<div class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5 mx-10">
     <div class="flex gap-4 items-center ml-4 mb-4">
         <h2 class="text-xl text-white">Catégorie MOD</h2>
             <button type="button" id="btnAjouterLigneMOD" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"><i class="fa-solid fa-plus"></i></button>
@@ -93,7 +93,7 @@
         if (document.querySelectorAll('.formRowMOD').length > 1) {
             formRow.remove();
         } else {
-            alert('Vous ne pouvez pas supprimer toutes les lignes !');
+            //alert('Vous ne pouvez pas supprimer toutes les lignes !');
         }
     }
 </script>
@@ -184,7 +184,7 @@ $('#btnPush').click(function(event) {
 
         // ajouter cet objet au tableau
         dataArr.push(formData);
-    });
+    }); 
 
     // imprimer le tableau pour le débogage
     console.log(dataArr);

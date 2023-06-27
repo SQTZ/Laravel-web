@@ -4,11 +4,14 @@
 
 </head>
 
-<div class="mb-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5">
+<div class="mb-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl py-5 mx-10">
     <div class="flex gap-4 items-center mb-4 ml-4 ">
     <h2 class="text-xl text-white">Catégorie MAT</h2>
             <button type="button" id="btnAjouterLigneMAT" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"><i class="fa-solid fa-plus"></i></button>
+            <div id="progressQuantiteMAT" class="text-white"></div>
     </div>
+
+
 
     @if(isset($dossierMAT))
     <div id="formContainerMAT">
@@ -24,26 +27,27 @@
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgMAT" class="prixKgMAT w-24 h-8" value="{{ $mat->Prix_kg }}" readonly/>
+                <input type="text" id="prixKgMAT" class="prixKgMAT w-24 h-8" value="{{ $mat->Prix_kg }}" oninput="calculerCoutMatiereMAT()" readonly/>
             </div>
             <div class="flex flex-col">
+                <div id="progressTextMAT" class="text-white"></div>
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteMAT" class="quantiteMAT w-24 h-8" value="{{ $mat->Quantite }}"/>
+                <input type="text" id="quantiteMAT" class="quantiteMAT w-24 h-8" value="{{ $mat->Quantite }}" oninput="calculerCoutMatiereMAT()"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="coutMatiere" class="text-white">Coût matière</label>
+                <input type="text" id="coutMatiereMAT" class="coutMatiereMAT w-24 h-8" value="{{ $mat->Cout_matiere }}" oninput="calculerFreinteMAT()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteMAT" class="freinteMAT w-24 h-8" value="{{ $mat->Freinte }}"/>
+                <input type="text" id="freinteMAT" class="freinteMAT w-24 h-8" value="{{ $mat->Freinte }}" oninput="calculerFreinteMAT()"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
                 <input type="text" id="poidsMatMAT" class="poidsMatMAT w-24 h-8" value="{{ $mat->Poids_mat }}" readonly/>
             </div>
             <div class="flex flex-col">
-                <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereMAT" class="coutMatiereMAT w-24 h-8" value="{{ $mat->Cout_matiere }}" readonly/>
-            </div>
-            <div class="flex flex-col">
-                <label for="freinteGlobale" class="text-white">Freinte globale</label>
+                <label for="freinteGlobale" class="text-white">Total</label>
                 <input type="text" id="freinteGlobaleMAT" class="freinteGlobaleMAT h-8" value="{{ $mat->Freinte_globale }}"/>
             </div>
 
@@ -65,26 +69,26 @@
             </div>
             <div class="flex flex-col">
                 <label for="prixKg" class="text-white">Prix /kg</label>
-                <input type="text" id="prixKgMAT" class="prixKgMAT w-24 h-8" readonly/>
+                <input type="text" id="prixKgMAT" class="prixKgMAT w-24 h-8" oninput="calculerCoutMatiereMAT()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="quantite" class="text-white">Quantité</label>
-                <input type="text" id="quantiteMAT" class="quantiteMAT w-24 h-8"/>
+                <input type="text" id="quantiteMAT" class="quantiteMAT w-24 h-8" oninput="calculerCoutMatiereMAT()"/>
+            </div>
+            <div class="flex flex-col">
+                <label for="coutMatiere" class="text-white">Coût matière</label>
+                <input type="text" id="coutMatiereMAT" class="coutMatiereMAT w-24 h-8" oninput="calculerFreinteMAT()" readonly/>
             </div>
             <div class="flex flex-col">
                 <label for="freinte" class="text-white">Freinte</label>
-                <input type="text" id="freinteMAT" class="freinteMAT w-24 h-8"/>
+                <input type="text" id="freinteMAT" class="freinteMAT w-24 h-8" oninput="calculerFreinteMAT()"/>
             </div>
             <div class="flex flex-col">
                 <label for="poidsMat" class="text-white">Poids MAT</label>
                 <input type="text" id="poidsMatMAT" class="poidsMatMAT w-24 h-8" readonly/>
             </div>
             <div class="flex flex-col">
-                <label for="coutMatiere" class="text-white">Coût matière</label>
-                <input type="text" id="coutMatiereMAT" class="coutMatiereMAT w-24 h-8" readonly/>
-            </div>
-            <div class="flex flex-col">
-                <label for="freinteGlobale" class="text-white">Freinte globale</label>
+                <label for="freinteGlobale" class="text-white">Total</label>
                 <input type="text" id="freinteGlobaleMAT" class="freinteGlobaleMAT h-8"/>
             </div>
 
@@ -109,7 +113,7 @@
         if (formRowCount > 1) {
             formRow.remove();
         } else {
-            alert('Vous ne pouvez pas supprimer toutes les lignes !');
+            //alert('Vous ne pouvez pas supprimer toutes les lignes !');
         }
     }
 
@@ -164,7 +168,7 @@
                         formRow.querySelector('#designation').value = data.Designation;
                         formRow.querySelector('#prixKgMAT').value = data.Prix_article_kg;
                         formRow.querySelector('#poidsMatMAT').value = data.Poids_MAT;
-                        formRow.querySelector('#coutMatiereMAT').value = data.Cout_Matiere;
+                        //formRow.querySelector('#coutMatiereMAT').value = data.Cout_Matiere;
                     }
                 })
                 .catch(error => {
@@ -201,18 +205,73 @@ function updateValuesMAT() {
     CalculTotal();
 }
 
+function calculerCoutMatiereMAT() {
+    var prixKgElements = document.getElementsByClassName('prixKgMAT');
+    var quantiteElements = document.getElementsByClassName('quantiteMAT');
+    var coutMatiereElements = document.getElementsByClassName('coutMatiereMAT');
+    var totalQuantite = 0;
+
+    for (var i = 0; i < prixKgElements.length; i++) {
+        var prixKg = parseFloat(prixKgElements[i].value);
+        var quantite = parseFloat(quantiteElements[i].value);
+
+        // Verify if adding the current quantity would exceed 1
+        if (totalQuantite + quantite > 1) {
+            alert("La somme des quantités ne peut pas dépasser 1");
+            quantiteElements[i].value = (1 - totalQuantite).toFixed(2); // set the value so that total becomes 1
+            quantite = 1 - totalQuantite; // update the quantity to be added
+        }
+
+        var coutMatiere = prixKg * quantite;
+        coutMatiereElements[i].value = coutMatiere.toFixed(2);
+
+        // Add the current quantity to the total
+        totalQuantite += quantite;
+    }
+
+    // Update the progress text
+    var progressText = document.getElementById('progressQuantiteMAT');
+    progressText.innerText = "Quantité: " + (totalQuantite * 100).toFixed(2) + "%";
+
+    // Check if the total quantity is 1
+    if (totalQuantite.toFixed(2) == 1.00) {
+        alert("La somme des quantités est égale à 1");
+    }
+}
+
+
+
+
+    function calculerFreinteMAT() {
+      var FreinteElements = document.getElementsByClassName('freinteMAT');
+      var coutMatiereElements = document.getElementsByClassName('coutMatiereMAT');
+      var freinteglobaleElements = document.getElementsByClassName('freinteGlobaleMAT');
+
+      for (var i = 0; i < FreinteElements.length; i++) {
+        var freinte = parseFloat(FreinteElements[i].value);
+        var coutMatiere = parseFloat(coutMatiereElements[i].value);
+        var freinteGlobale = freinte + coutMatiere;
+
+        freinteglobaleElements[i].value = freinteGlobale.toFixed(2);
+      }
+    }
+
+
+
 function CalcReleaseMAT(formRow) {
     var prixKgMAT = parseFloat(formRow.querySelector("#prixKgMAT").value);
     var quantiteMAT = parseFloat(formRow.querySelector("#quantiteMAT").value);
     var freinteMAT = parseFloat(formRow.querySelector("#freinteMAT").value);
     var poidsMatMAT = parseFloat(formRow.querySelector("#poidsMatMAT").value);
     var coutMatiereMAT = parseFloat(formRow.querySelector("#coutMatiereMAT").value);
-    var freinteGlobaleMAT = parseFloat(formRow.querySelector("#freinteGlobaleMAT").value);
+    var freinteGlobaleMAT = parseFloat(formRow.querySelector("#freinteGlobaleMAT").value);  
 
-    let result = (prixKgMAT * quantiteMAT) + (freinteMAT * poidsMatMAT) + (coutMatiereMAT * freinteGlobaleMAT);
+    let result = coutMatiereMAT;
 
     return result;
 }
+
+
 
 
 </script>
