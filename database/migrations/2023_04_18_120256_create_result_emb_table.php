@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('Code_article');
             $table->text('Designation');
             $table->decimal('Prix_kg', 8, 2);
-            $table->integer('Quantite');
+            $table->decimal('Quantite', 8, 2);
             $table->decimal('Freinte', 8, 2);
             $table->decimal('Poids_mat', 8, 2);
             $table->decimal('Cout_matiere', 8, 2);
